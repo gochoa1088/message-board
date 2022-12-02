@@ -4,10 +4,11 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable("posts", (table) => {
-    table.increments();
+    table.increments("blog_id");
     table.text("author", 128).defaultTo("Anon");
-    table.text("content");
-    table.timestamps(true, true);
+    table.text("content").notNullable();
+    table.integer("votes").defaultTo(0);
+    table.table.timestamps(true, true);
   });
 };
 
@@ -15,4 +16,6 @@ exports.up = function (knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function (knex) {};
+exports.down = function (knex) {
+  return knex.schema.dropTableIfExists("posts");
+};
