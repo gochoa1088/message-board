@@ -25,17 +25,33 @@ a {
   padding: 10px;
   margin-top: 4px;
   width: 100px;
+  cursor: pointer;
 }
 
 .post {
   display: flex;
   margin-top: 24px;
-  border: solid black 1px;
-  height: 161px
+  border: solid rgb(177, 177, 177) 1px;
+  border-radius: 5px;
+  height: 161px;
 }
 
 .vote-container {
   width: 50px;
-  background-color: #e0e0e0;
+  background-color: #e8e7e7;
   text-align: center;
+  padding-top: 8px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-size: small;
+}
+
+.vote-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.post-message {
+  padding: 16px;
 }
