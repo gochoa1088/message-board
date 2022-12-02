@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class="home-container")
+    textarea(class="message-input" cols="30", rows="10", placeholder="Enter text here...")
+    button(class="submit-btn" type="submit") Submit
+
+    div(class="post")
+      div(class="vote-container")
+        button(class="up-arrow") &#8593
+        p Vote
+      div(class="post-message") This is a dummy post
+
+

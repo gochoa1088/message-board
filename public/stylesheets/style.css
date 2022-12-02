@@ -6,3 +6,36 @@ body {
 a {
   color: #00B7FF;
 }
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-input {
+  resize: none;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  border-radius: 15px;
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 4px;
+  width: 100px;
+}
+
+.post {
+  display: flex;
+  margin-top: 24px;
+  border: solid black 1px;
+  height: 161px
+}
+
+.vote-container {
+  width: 50px;
+  background-color: #e0e0e0;
+  text-align: center;
+}
