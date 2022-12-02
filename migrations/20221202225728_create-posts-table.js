@@ -8,7 +8,7 @@ exports.up = function (knex) {
     table.text("author", 128).defaultTo("Anon");
     table.text("content").notNullable();
     table.integer("votes").defaultTo(0);
-    table.table.timestamps(true, true);
+    table.timestamps(true, true);
   });
 };
 
