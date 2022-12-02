@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "mac-dev": "DEBUG=message-board:* nodemon ./bin/www",
+    "win-dev": "set DEBUG=message-board:* && nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
