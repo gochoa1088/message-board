@@ -2,14 +2,16 @@ extends layout
 
 block content
   div(class="home-container")
-    textarea(class="message-input" cols="30", rows="10", placeholder="Enter text here...")
-    button(class="submit-btn" type="submit") Submit
+    div(class="submit-container")
+      textarea(cols="30", rows="10", placeholder="Enter text here...")
+      button(type="submit") Submit
 
     div(class="post")
       div(class="vote-container")
-        button(class="vote-btn") &#8593
+        button &#8593
         p Vote
-        button(class="vote-btn") &#8595
-      div(class="post-message") This is a dummy post
+        button &#8595
+      div(class="post-message") 
+        p This is a dummy post
 
 
