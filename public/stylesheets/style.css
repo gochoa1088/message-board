@@ -6,3 +6,77 @@ body {
 a {
   color: #00B7FF;
 }
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+}
+
+.submit-container textarea {
+  resize: none;
+}
+
+.submit-container button {
+  align-self: flex-end;
+  border-radius: 15px;
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 4px;
+  width: 100px;
+  cursor: pointer;
+
+}
+
+.post {
+  position: relative;
+  display: flex;
+  margin-top: 24px;
+  border: solid rgb(177, 177, 177) 1px;
+  border-radius: 5px;
+  height: 161px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.vote-container {
+  width: 40px;
+  background-color: #F7F9FA;
+  text-align: center;
+  padding-top: 8px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-size: x-small;
+}
+
+.vote-container button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.post-message {
+  padding: 16px;
+}
+
+.post-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.post-info p {
+  font-size: xx-small;
+  font-style: italic;
+  margin-right: 10px;
+  color: #ababab;
+}
