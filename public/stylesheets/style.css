@@ -38,6 +38,7 @@ a {
 }
 
 .post {
+  position: relative;
   display: flex;
   margin-top: 24px;
   border: solid rgb(177, 177, 177) 1px;
@@ -65,4 +66,17 @@ a {
 
 .post-message {
   padding: 16px;
+}
+
+.post-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.post-info p {
+  font-size: xx-small;
+  font-style: italic;
+  margin-right: 10px;
+  color: #ababab;
 }

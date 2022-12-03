@@ -2,7 +2,7 @@ extends layout
 
 block content
   div(class="home-container")
-    form(method="post", class="submit-container") ()
+    form(method="post", class="submit-container")
       textarea(cols="30", rows="10", placeholder="Enter text here...")
       button(type="submit") Submit
 
@@ -13,5 +13,5 @@ block content
         button &#8595
       div(class="post-message") 
         p This is a dummy post
-
-
+      div(class="post-info")
+        p author: timestamp
