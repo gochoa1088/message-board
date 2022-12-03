@@ -6,6 +6,7 @@ const Posts = require("../models/postsModel");
 router.get("/", async function (req, res, next) {
   try {
     const posts = await Posts.findAllPosts();
+    console.log(posts);
     res.status(200).render("index", posts);
   } catch (err) {
     res.status(500).json({ message: "Unable to find posts" });
@@ -13,6 +14,7 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async (req, res, next) => {
+  console.log(req.body);
   await Posts.addPost(req.body)
     .then((post) => {
       res.status(200).json(post);
