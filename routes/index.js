@@ -17,7 +17,7 @@ router.post("/", async (req, res, next) => {
   console.log(req.body);
   await Posts.addPost(req.body)
     .then((post) => {
-      res.status(200).json(post);
+      res.status(200).redirect("/");
     })
     .catch((err) => {
       res.status(500).json({ message: "Unable to add post" });
