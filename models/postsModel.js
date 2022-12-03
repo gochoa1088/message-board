@@ -16,7 +16,12 @@ const addPost = async (post) => {
 // delete a post
 const deletePost = () => {};
 
+// update a post
+const updatePost = () => {};
+
 module.exports = {
   addPost,
   findAllPosts,
+  deletePost,
+  updatePost,
 };

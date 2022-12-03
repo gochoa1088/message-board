@@ -12,6 +12,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
+/* POST home page. */
 router.post("/", async (req, res, next) => {
   try {
     await Posts.addPost(req.body);
