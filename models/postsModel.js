@@ -14,6 +14,7 @@ const addPost = async (post) => {
 };
 
 // delete a post
+const deletePost = () => {};
 
 module.exports = {
   addPost,
