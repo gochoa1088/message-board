@@ -13,11 +13,17 @@ const addPost = async (post) => {
   const [id] = await db("posts").insert(post);
 };
 
+// get single post
+
+
+
 // delete a post
-const deletePost = () => {};
+const deletePost = (id) => {
+  // await db(posts).delete(id)
+};
 
 // update a post
-const updatePost = () => {};
+const updatePost = () => { };
 
 module.exports = {
   addPost,
