@@ -9,6 +9,7 @@ module.exports = {
     connection: {
       filename: "./data/posts.sqlite3",
     },
+    useNullAsDefault: true,
   },
 
   staging: {
@@ -42,6 +43,4 @@ module.exports = {
       tableName: "knex_migrations",
     },
   },
-
-  useNullAsDefault: true,
 };

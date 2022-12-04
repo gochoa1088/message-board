@@ -1,0 +1,27 @@
+const knex = require("knex");
+const config = require("../knexfile");
+
+const db = knex(config.development);
+
+// get all posts
+const findAllPosts = async () => {
+  return await db("posts");
+};
+
+// add a post
+const addPost = async (post) => {
+  const [id] = await db("posts").insert(post);
+};
+
+// delete a post
+const deletePost = () => {};
+
+// update a post
+const updatePost = () => {};
+
+module.exports = {
+  addPost,
+  findAllPosts,
+  deletePost,
+  updatePost,
+};
