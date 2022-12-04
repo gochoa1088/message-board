@@ -14,7 +14,10 @@ const addPost = async (post) => {
 };
 
 // get single post
-
+const findPost = async (id) => {
+  return await db('posts')
+    .where("blog_id", id);
+}
 
 
 // delete a post
@@ -28,6 +31,7 @@ const updatePost = () => { };
 module.exports = {
   addPost,
   findAllPosts,
+  findPost,
   deletePost,
   updatePost,
 };
