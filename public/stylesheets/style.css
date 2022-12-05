@@ -14,16 +14,26 @@ a {
 }
 
 .submit-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 800px;
 }
 
+.back-arrow {
+  position: absolute;
+  top: -32px;
+  left: 0;
+  font-size: medium;
+  text-decoration: none;
+}
+
 .submit-container textarea {
   resize: none;
   padding: 16px;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
 }
 
 .submit-container button {
@@ -63,16 +73,17 @@ a {
   max-width: 800px;
 }
 
-.post>a {
+.edit-link {
   position: absolute;
   top: 0;
   right: 0;
   margin: 10px;
   font-size: small;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.post>a:hover {
+.edit-link:hover {
   text-decoration: underline;
 }
 
@@ -109,10 +120,11 @@ a {
   color: #ababab;
 }
 
-.post-info a {
+.author-link {
+  text-decoration: none;
   cursor: pointer;
 }
 
-.post-info a:hover {
+.author-link:hover {
   text-decoration: underline;
 }

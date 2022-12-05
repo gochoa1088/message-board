@@ -4,6 +4,7 @@ block content
   div(class="page-container")
     h3()=title
     form(method="post", class="submit-container" )
+      a(href="/" class="back-arrow") &#8592 Back
       textarea(name="content", cols="30", rows="10") #{post[0].content}
       div(class="buttons-container")
         button() Delete

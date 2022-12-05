@@ -9,7 +9,7 @@ block content
     ul(class="posts-list")
       each post in posts 
         li(class="post")
-          a(href=`/${post.blog_id}`) Edit
+          a(href=`/${post.blog_id}` class="edit-link") Edit
           div(class="vote-container")
             button &#8593
             p #{post.votes}
@@ -19,6 +19,6 @@ block content
           div(class="post-info")
             p 
               |Posted by 
-              a() #{post.author} 
+              a(class="author-link") #{post.author} 
               |at #{post.created_at}
   
