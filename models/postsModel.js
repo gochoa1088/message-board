@@ -29,10 +29,10 @@ const deletePost = async (id) => {
 
 // update a post
 const updatePost = async (id, body) => {
-  const postEdit = body.content
+  const { content } = body
   await db('posts')
     .where("blog_id", id)
-    .update({ content: postEdit })
+    .update({ content })
 };
 
 module.exports = {
