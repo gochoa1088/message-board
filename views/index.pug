@@ -9,6 +9,7 @@ block content
   ul(class="posts-list")
     each post in posts 
       li(class="post")
+        a() Edit
         div(class="vote-container")
           button &#8593
           p #{post.votes}
@@ -18,6 +19,6 @@ block content
         div(class="post-info")
           p 
             |Posted by 
-            a #{post.author} 
+            a() #{post.author} 
             |at #{post.created_at}
   
