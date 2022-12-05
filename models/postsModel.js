@@ -25,7 +25,9 @@ const deletePost = async (id) => {
 
 // update a post
 const updatePost = async (id, body) => {
-  await db("posts").where("blog_id", id).update(body);
+  await db("posts")
+    .where("blog_id", id)
+    .update({ ...body, updated_at: new Date().toISOString() });
 };
 
 module.exports = {
