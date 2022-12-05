@@ -37,6 +37,13 @@ a {
 
 }
 
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
 .post {
   position: relative;
   display: flex;
@@ -46,6 +53,19 @@ a {
   height: 161px;
   width: 100%;
   max-width: 800px;
+}
+
+.post>a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  font-size: small;
+  cursor: pointer;
+}
+
+.post>a:hover {
+  text-decoration: underline;
 }
 
 .vote-container {
@@ -79,4 +99,12 @@ a {
   font-style: italic;
   margin-right: 10px;
   color: #ababab;
+}
+
+.post-info a {
+  cursor: pointer;
+}
+
+.post-info a:hover {
+  text-decoration: underline;
 }
