@@ -6,7 +6,8 @@ const Posts = require("../models/postsModel");
 router.get("/", async function (req, res, next) {
   try {
     const posts = await Posts.findAllPosts();
-    res.status(200).render("index", posts);
+    const pageProperties = { title: "Posts", posts }
+    res.status(200).render("index", pageProperties);
   } catch (err) {
     res.status(500).json({ message: "Unable to find posts" });
   }
@@ -28,28 +29,28 @@ router.get("/:id", async function (req, res, next) {
     const post = await Posts.findPost(req.params.id);
     res.status(200).json(post);
   } catch (err) {
-    res.status(500).json({ message: "Unable to find post." })
+    res.status(500).json({ message: "Unable to find post." });
   }
-})
+});
 
 // Delete post
 router.delete("/:id", async function (req, res, next) {
   try {
-    await Posts.deletePost(req.params.id)
+    await Posts.deletePost(req.params.id);
     res.status(200).redirect("/");
   } catch (err) {
-    res.status(500).json({ message: "Unable to delete post." })
+    res.status(500).json({ message: "Unable to delete post." });
   }
-})
+});
 
 // Update Post
 router.put("/:id", async function (req, res, next) {
   try {
-    await Posts.updatePost(req.params.id, req.body)
-    res.status(200).redirect("/")
+    await Posts.updatePost(req.params.id, req.body);
+    res.status(200).redirect("/");
   } catch {
-    res.status(500).json({ message: "Unable to update post." })
+    res.status(500).json({ message: "Unable to update post." });
   }
-})
+});
 
 module.exports = router;
