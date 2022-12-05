@@ -28,7 +28,11 @@ const deletePost = async (id) => {
 };
 
 // update a post
-const updatePost = () => { };
+const updatePost = async (id, postEdit) => {
+  await db('posts')
+    .where("blog_id", id)
+    .update({ content: postEdit })
+};
 
 module.exports = {
   addPost,
