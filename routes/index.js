@@ -6,7 +6,7 @@ const Posts = require("../models/postsModel");
 router.get("/", async function (req, res, next) {
   try {
     const posts = await Posts.findAllPosts();
-    res.status(200).render("index", posts);
+    res.status(200).render("index", { posts });
   } catch (err) {
     res.status(500).json({ message: "Unable to find posts" });
   }
