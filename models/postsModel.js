@@ -15,24 +15,17 @@ const addPost = async (post) => {
 
 // get single post
 const findPost = async (id) => {
-  return await db('posts')
-    .where("blog_id", id);
-}
-
+  return await db("posts").where("blog_id", id);
+};
 
 // delete a post
 const deletePost = async (id) => {
-  await db('posts')
-    .where("blog_id", id)
-    .delete()
+  await db("posts").where("blog_id", id).delete();
 };
 
 // update a post
 const updatePost = async (id, body) => {
-  const { content } = body
-  await db('posts')
-    .where("blog_id", id)
-    .update({ content })
+  await db("posts").where("blog_id", id).update(body);
 };
 
 module.exports = {
