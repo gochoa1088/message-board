@@ -46,7 +46,7 @@ router.delete("/:id", async function (req, res, next) {
 router.put("/:id", async function (req, res, next) {
   try {
     await Posts.updatePost(req.params.id, req.body);
-    res.status(200).redirect(303, "/");
+    res.status(200).redirect("/");
   } catch {
     res.status(500).json({ message: "Unable to update post." });
   }
