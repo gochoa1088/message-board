@@ -22,13 +22,14 @@ const findPost = async (id) => {
 
 // delete a post
 const deletePost = async (id) => {
-  await await db('posts')
+  await db('posts')
     .where("blog_id", id)
     .delete()
 };
 
 // update a post
-const updatePost = async (id, postEdit) => {
+const updatePost = async (id, body) => {
+  const postEdit = body.content
   await db('posts')
     .where("blog_id", id)
     .update({ content: postEdit })
