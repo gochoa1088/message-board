@@ -1,24 +1,24 @@
 extends layout
 
 block content
-  div(class="home-container")
+  div(class="page-container")
     form(method="post", class="submit-container")
       textarea(name="content", cols="30", rows="10", placeholder="Enter text here...", value="")
       button(type="submit") Submit
-  h3 #{title}
-  ul(class="posts-list")
-    each post in posts 
-      li(class="post")
-        a() Edit
-        div(class="vote-container")
-          button &#8593
-          p #{post.votes}
-          button &#8595
-        div(class="post-message") 
-          p #{post.content}
-        div(class="post-info")
-          p 
-            |Posted by 
-            a() #{post.author} 
-            |at #{post.created_at}
+    h3 #{title}
+    ul(class="posts-list")
+      each post in posts 
+        li(class="post")
+          a(href=`/${post.blog_id}`) Edit
+          div(class="vote-container")
+            button &#8593
+            p #{post.votes}
+            button &#8595
+          div(class="post-message") 
+            p #{post.content}
+          div(class="post-info")
+            p 
+              |Posted by 
+              a() #{post.author} 
+              |at #{post.created_at}
   

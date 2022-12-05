@@ -27,7 +27,8 @@ router.post("/", async (req, res, next) => {
 router.get("/:id", async function (req, res, next) {
   try {
     const post = await Posts.findPost(req.params.id);
-    res.status(200).json(post);
+    const pageProperties = { title: "Edit Post", post }
+    res.status(200).render("edit", pageProperties);
   } catch (err) {
     res.status(500).json({ message: "Unable to find post." });
   }

@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+  div(class="page-container")
+    h3()=title
+    div(class="post")
+      a() Delete
+      div(class="vote-container")
+        button &#8593
+        p #{post[0].votes}
+        button &#8595
+      div(class="post-message") 
+        p #{post[0].content}
+      div(class="post-info")
+        p 
+          |Posted by 
+          a() #{post[0].author} 
+          |at #{post[0].created_at}
+  
