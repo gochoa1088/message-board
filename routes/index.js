@@ -6,7 +6,7 @@ const Posts = require("../models/postsModel");
 router.get("/", async function (req, res, next) {
   try {
     const posts = await Posts.findAllPosts();
-    const pageProperties = { title: "Posts", posts }
+    const pageProperties = { title: "Posts", posts };
     res.status(200).render("index", pageProperties);
   } catch (err) {
     res.status(500).json({ message: "Unable to find posts" });
@@ -15,11 +15,22 @@ router.get("/", async function (req, res, next) {
 
 /* POST home page. */
 router.post("/", async (req, res, next) => {
-  try {
-    await Posts.addPost(req.body);
-    res.status(200).redirect("/");
-  } catch (err) {
-    res.status(500).json({ message: "Unable to add post" });
+  if (req.body.method === "PUT") {
+    try {
+      const { id, votes } = req.body;
+      await Posts.updatePost(id, { votes });
+      res.status(200).redirect("/");
+    } catch (err) {
+      res.status(500).json({ message: "Unable to add post" });
+    }
+  } else {
+    try {
+      delete req.body.method;
+      await Posts.addPost(req.body);
+      res.status(200).redirect("/");
+    } catch (err) {
+      res.status(500).json({ message: "Unable to add post" });
+    }
   }
 });
 
