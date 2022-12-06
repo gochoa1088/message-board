@@ -28,24 +28,25 @@ router.post("/", async (req, res, next) => {
 router.get("/:id", async function (req, res, next) {
   try {
     const post = await Posts.findPost(req.params.id);
-    res.status(200).json(post);
+    const pageProperties = { title: "Edit Post", post }
+    res.status(200).render("edit", pageProperties);
   } catch (err) {
     res.status(500).json({ message: "Unable to find post." });
   }
 });
 
 // Delete post
-router.delete("/:id", async function (req, res, next) {
+router.post("/:id/delete", async function (req, res, next) {
   try {
     await Posts.deletePost(req.params.id);
     res.status(200).redirect("/");
   } catch (err) {
     res.status(500).json({ message: "Unable to delete post." });
   }
-});
+})
 
-// Update Post
-router.put("/:id", async function (req, res, next) {
+//Edit post
+router.post("/:id/edit", async function (req, res, next) {
   try {
     await Posts.updatePost(req.params.id, req.body);
     res.status(200).redirect("/");
