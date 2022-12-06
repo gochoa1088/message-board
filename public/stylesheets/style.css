@@ -94,7 +94,7 @@ a {
 
 .vote-container {
   min-width: 40px;
-  background-color: #F7F9FA;
+  background-color: #f7f9fa;
   text-align: center;
   padding-top: 8px;
   border-top-left-radius: 5px;
@@ -133,4 +133,19 @@ a {
 
 .author-link:hover {
   text-decoration: underline;
+}
+
+.sort-link {
+  text-decoration: none;
+  cursor: pointer;
+  margin: 4px;
+}
+
+.sort-link:hover {
+  text-decoration: underline;
+}
+
+.sort-links {
+  width: 100%;
+  max-width: 800px;
 }
