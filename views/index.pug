@@ -3,7 +3,6 @@ extends layout
 block content
   div(class="home-container")
     form(method="post", class="submit-container")
-      input(name="method" type="hidden" value="POST")
       textarea(name="content", cols="30", rows="10", placeholder="Enter text here...", value="")
       button(type="submit") Submit
   h3 #{title}
@@ -12,16 +11,12 @@ block content
       li(class="post")
         a() Edit
         div(class="vote-container")
-          form(method="post")
-            input(name="method" type="hidden" value="PUT")
+          form(method="post" action=`/${post.blog_id}/vote`)
             input(name="votes" type="hidden" value=post.votes+1)
-            input(name="id" type="hidden" value=post.blog_id)
             button(type="submit") &#8593
           p #{post.votes}
-          form(method="post")
-            input(name="method" type="hidden" value="PUT")
+          form(method="post" action=`/${post.blog_id}/vote`)
             input(name="votes" type="hidden" value=post.votes-1)
-            input(name="id" type="hidden" value=post.blog_id)
             button(type="submit") &#8595
         div(class="post-message") 
           p #{post.content}

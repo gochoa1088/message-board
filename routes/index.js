@@ -15,22 +15,12 @@ router.get("/", async function (req, res, next) {
 
 /* POST home page. */
 router.post("/", async (req, res, next) => {
-  if (req.body.method === "PUT") {
-    try {
-      const { id, votes } = req.body;
-      await Posts.updatePost(id, { votes });
-      res.status(200).redirect("/");
-    } catch (err) {
-      res.status(500).json({ message: "Unable to add post" });
-    }
-  } else {
-    try {
-      delete req.body.method;
-      await Posts.addPost(req.body);
-      res.status(200).redirect("/");
-    } catch (err) {
-      res.status(500).json({ message: "Unable to add post" });
-    }
+  try {
+    console.log(req.body);
+    await Posts.addPost(req.body);
+    res.status(200).redirect("/");
+  } catch (err) {
+    res.status(500).json({ message: "Unable to add post" });
   }
 });
 
@@ -60,6 +50,16 @@ router.put("/:id", async function (req, res, next) {
     await Posts.updatePost(req.params.id, req.body);
     res.status(200).redirect("/");
   } catch {
+    res.status(500).json({ message: "Unable to update post." });
+  }
+});
+
+// Update Post Votes
+router.post("/:id/vote", async (req, res, next) => {
+  try {
+    await Posts.updatePost(req.params.id, req.body);
+    res.status(200).redirect("/");
+  } catch (err) {
     res.status(500).json({ message: "Unable to update post." });
   }
 });
