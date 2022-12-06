@@ -8,6 +8,10 @@ const findAllPosts = async () => {
   return await db("posts");
 };
 
+const findPostsByAuthor = async (author) => {
+  return await db("posts").where("author", author);
+};
+
 // add a post
 const addPost = async (post) => {
   if (post.author === "") {
@@ -49,4 +53,5 @@ module.exports = {
   updatePost,
   upvotePost,
   downvotePost,
+  findPostsByAuthor,
 };
