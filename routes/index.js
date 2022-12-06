@@ -23,8 +23,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+/* GET user page. */
+router.get("/:author", async function (req, res, next) {
+  try {
+    const posts = await Posts.findPostsByAuthor(req.params.author);
+    const pageProperties = { title: `Posts by ${req.params.author}`, posts };
+    res.status(200).render("author", pageProperties);
+  } catch (err) {
+    res.status(500).json({ message: "Unable to find posts" });
+  }
+});
+
 // GET individual post
-router.get("/:id", async function (req, res, next) {
+router.get("/:author/:id", async function (req, res, next) {
   try {
     const post = await Posts.findPost(req.params.id);
     const pageProperties = { title: "Edit Post", post };
@@ -35,7 +46,7 @@ router.get("/:id", async function (req, res, next) {
 });
 
 // Delete post
-router.post("/:id/delete", async function (req, res, next) {
+router.post("/:author/:id/delete", async function (req, res, next) {
   try {
     await Posts.deletePost(req.params.id);
     res.status(200).redirect("/");
@@ -45,7 +56,7 @@ router.post("/:id/delete", async function (req, res, next) {
 });
 
 //Edit post
-router.post("/:id/edit", async function (req, res, next) {
+router.post("/:author/:id/edit", async function (req, res, next) {
   try {
     await Posts.updatePost(req.params.id, req.body);
     res.status(200).redirect("/");
@@ -55,20 +66,20 @@ router.post("/:id/edit", async function (req, res, next) {
 });
 
 // upvote post
-router.post("/:id/upvote", async (req, res, next) => {
+router.post("/:author/:id/upvote", async (req, res, next) => {
   try {
     await Posts.upvotePost(req.params.id);
-    res.status(200).redirect("/");
+    res.status(200).redirect("back");
   } catch (err) {
     res.status(500).json({ message: "Unable to upvote post." });
   }
 });
 
 // downvote post
-router.post("/:id/downvote", async (req, res, next) => {
+router.post("/:author/:id/downvote", async (req, res, next) => {
   try {
     await Posts.downvotePost(req.params.id);
-    res.status(200).redirect("/");
+    res.status(200).redirect("back");
   } catch (err) {
     res.status(500).json({ message: "Unable to downvote post." });
   }
