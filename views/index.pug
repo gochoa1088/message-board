@@ -11,14 +11,16 @@ block content
         li(class="post")
           a(href=`/${post.blog_id}` class="edit-link") Edit
           div(class="vote-container")
-            button &#8593
+            form(method="post" action=`/${post.blog_id}/upvote`)
+              button(type="submit") &#8593
             p #{post.votes}
-            button &#8595
+            form(method="post" action=`/${post.blog_id}/downvote`)
+              button(type="submit") &#8595
           div(class="post-message") 
             p #{post.content}
           div(class="post-info")
             p 
               |Posted by 
-              a(class="author-link") #{post.author} 
+              a() #{post.author} 
               |at #{post.created_at}
   

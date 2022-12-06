@@ -30,10 +30,20 @@ const updatePost = async (id, body) => {
     .update({ ...body, updated_at: new Date().toISOString() });
 };
 
+const upvotePost = async (id, body) => {
+  await db("posts").where("blog_id", id).increment("votes", 1);
+};
+
+const downvotePost = async (id, body) => {
+  await db("posts").where("blog_id", id).decrement("votes", 1);
+};
+
 module.exports = {
   addPost,
   findAllPosts,
   findPost,
   deletePost,
   updatePost,
+  upvotePost,
+  downvotePost,
 };
