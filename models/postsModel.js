@@ -5,11 +5,13 @@ const db = knex(config.development);
 
 // get all posts
 const findAllPosts = async () => {
-  return await db("posts");
+  return await db("posts").orderBy("created_at", "desc");
 };
 
 const findPostsByAuthor = async (author) => {
-  return await db("posts").where("author", author);
+  return await db("posts")
+    .where("author", author)
+    .orderBy("created_at", "desc");
 };
 
 // add a post
