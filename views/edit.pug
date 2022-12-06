@@ -4,7 +4,7 @@ block content
   div(class="page-container")
     h3()=title
     form(method="POST", class="submit-container" action=`/${post[0].author}/${post[0].blog_id}/edit` id="edit")
-      a(href="/" class="back-arrow") &#8592 Back
+      a(href=`/${post[0].author}` class="back-arrow") &#8592 Back
       textarea(name="content", cols="30", rows="10") #{post[0].content}
       div(class="buttons-container")
         button(type="submit" form="delete") Delete
