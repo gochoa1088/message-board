@@ -1,6 +1,7 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  h1 Something went wrong!
+  h2= message
+  pre #{message.stack}
+  a(href="/") Go Home

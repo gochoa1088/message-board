@@ -5,21 +5,36 @@ const db = knex(config.development);
 
 // get all posts
 const findAllPosts = async (query) => {
-  if (Object.keys(query).length === 2) {
-    return await db("posts").orderBy(query.value, query.sort);
+  try {
+    if (Object.keys(query).length === 2) {
+      return await db("posts").orderBy(query.value, query.sort);
+    }
+    return await db("posts").orderBy("created_at", "desc");
+  } catch(error) {
+    if(error.code === 'SQLITE_ERROR') throw new Error("Ivalid query.")
   }
-  return await db("posts").orderBy("created_at", "desc");
 };
 
 const findPostsByAuthor = async (author, query) => {
-  if (Object.keys(query).length === 2) {
-    return await db("posts")
-      .where("author", author)
-      .orderBy(query.value, query.sort);
+  try {
+    let posts;
+    if (Object.keys(query).length === 2) {
+      posts = await db("posts")
+        .where("author", author)
+        .orderBy(query.value, query.sort); 
+    } else {
+      posts = await db("posts")
+        .where("author", author)
+        .orderBy("created_at", "desc");
+    }
+    if(!posts.length) {
+      throw new Error(`Sorry, there are no posts by ${author}!`)
+    }
+    return posts;
+  } catch (error){
+    if(error.code === 'SQLITE_ERROR') throw new Error("Ivalid query.")
+    throw error;
   }
-  return await db("posts")
-    .where("author", author)
-    .orderBy("created_at", "desc");
 };
 
 // add a post
@@ -32,7 +47,9 @@ const addPost = async (post) => {
 
 // get single post
 const findPost = async (id) => {
-  return await db("posts").where("blog_id", id);
+  const post = await db("posts").where("blog_id", id);
+  if(!post.length) throw new Error(`Sorry, could not find post with ID: ${id}.`);
+  return post;
 };
 
 // delete a post
