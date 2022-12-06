@@ -3,10 +3,12 @@ extends layout
 block content 
   div(class="page-container")
     h3()=title
-    form(action="/" method="POST", class="submit-container" )
+    form(method="POST", class="submit-container" action=`/${post[0].blog_id}/edit` id="edit")
       a(href="/" class="back-arrow") &#8592 Back
       textarea(name="content", cols="30", rows="10") #{post[0].content}
       div(class="buttons-container")
-        button() Delete
-        button(type="submit") Submit
+        button(type="submit" form="delete") Delete
+        button(type="submit" form="edit") Submit
+    form(method="POST" action=`/${post[0].blog_id}/delete` id="delete")
+      
   
