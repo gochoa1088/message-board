@@ -8,7 +8,7 @@ block content
       span(class="sort-links") Sort By: 
           a(href=`/${author}` class="sort-link") Most Recent
           span() |
-          a(href=`${author}/?value=votes&sort=desc` class="sort-link") Most Votes
+          a(href=`/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
       each post in posts 
         li(class="post" id=post.blog_id)
           a(href=`/${author}/${post.blog_id}` class="edit-link") Edit
