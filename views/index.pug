@@ -9,7 +9,7 @@ block content
   ul(class="posts-list")
     each post in posts 
       li(class="post")
-        a() Edit
+        a(href=`/${post.blog_id}` class="edit-link") Edit
         div(class="vote-container")
           form(method="post" action=`/${post.blog_id}/vote`)
             input(name="votes" type="hidden" value=post.votes+1)
