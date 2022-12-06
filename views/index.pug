@@ -8,6 +8,10 @@ block content
       button(type="submit") Submit
     h3 #{title}
     ul(class="posts-list")
+      span(class="sort-links") Sort By: 
+        a(class="sort-link") Most Recent
+        span() |
+        a(class="sort-link") Votes
       each post in posts 
         li(class="post")
           a(href=`/${post.author}/${post.blog_id}` class="edit-link") Edit
