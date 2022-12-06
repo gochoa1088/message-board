@@ -2,11 +2,8 @@ extends layout
 
 block content
   div(class="page-container")
-    form(method="post", class="submit-container")
-      input(type="text" class ="author-input" placeholder="Enter name..." name="author")
-      textarea(name="content", cols="30", rows="10", placeholder="Enter text here...", value="")
-      button(type="submit") Submit
     h3 #{title}
+    a(href="/") &#8592 Back
     ul(class="posts-list")
       each post in posts 
         li(class="post")
@@ -22,6 +19,5 @@ block content
           div(class="post-info")
             p 
               |Posted by 
-              a(href=`/${post.author}` class="author-link") #{post.author} 
+              a() #{post.author} 
               |at #{post.created_at}
-  
