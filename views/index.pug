@@ -13,7 +13,7 @@ block content
         span() |
         a(href="/?value=votes&sort=desc" class="sort-link") Most Votes
       each post in posts 
-        li(class="post")
+        li(class="post" id=post.blog_id)
           a(href=`/${post.author}/${post.blog_id}` class="edit-link") Edit
           div(class="vote-container")
             form(method="post" action=`/${post.author}/${post.blog_id}/upvote`)

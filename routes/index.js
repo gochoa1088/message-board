@@ -73,7 +73,7 @@ router.post("/:author/:id/edit", async function (req, res, next) {
 router.post("/:author/:id/upvote", async (req, res, next) => {
   try {
     await Posts.upvotePost(req.params.id);
-    res.status(200).redirect("back");
+    res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
   } catch (err) {
     res.status(500).json({ message: "Unable to upvote post." });
   }
@@ -83,7 +83,7 @@ router.post("/:author/:id/upvote", async (req, res, next) => {
 router.post("/:author/:id/downvote", async (req, res, next) => {
   try {
     await Posts.downvotePost(req.params.id);
-    res.status(200).redirect("back");
+    res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
   } catch (err) {
     res.status(500).json({ message: "Unable to downvote post." });
   }

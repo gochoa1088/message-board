@@ -13,12 +13,10 @@ const findAllPosts = async (query) => {
 
 const findPostsByAuthor = async (author, query) => {
   if (Object.keys(query).length === 2) {
-    console.log("in query");
     return await db("posts")
       .where("author", author)
       .orderBy(query.value, query.sort);
   }
-  console.log("outside query");
   return await db("posts")
     .where("author", author)
     .orderBy("created_at", "desc");
