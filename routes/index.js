@@ -5,7 +5,7 @@ const Posts = require("../models/postsModel");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   try {
-    const posts = await Posts.findAllPosts();
+    const posts = await Posts.findAllPosts(req.query);
     const pageProperties = { title: "Posts", posts };
     res.status(200).render("index", pageProperties);
   } catch (err) {
@@ -26,8 +26,12 @@ router.post("/", async (req, res, next) => {
 /* GET user page. */
 router.get("/:author", async function (req, res, next) {
   try {
-    const posts = await Posts.findPostsByAuthor(req.params.author);
-    const pageProperties = { title: `Posts by ${req.params.author}`, posts };
+    const posts = await Posts.findPostsByAuthor(req.params.author, req.query);
+    const pageProperties = {
+      title: `Posts by ${req.params.author}`,
+      author: req.params.author,
+      posts,
+    };
     res.status(200).render("author", pageProperties);
   } catch (err) {
     res.status(500).json({ message: "Unable to find posts" });
@@ -69,7 +73,7 @@ router.post("/:author/:id/edit", async function (req, res, next) {
 router.post("/:author/:id/upvote", async (req, res, next) => {
   try {
     await Posts.upvotePost(req.params.id);
-    res.status(200).redirect("back");
+    res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
   } catch (err) {
     res.status(500).json({ message: "Unable to upvote post." });
   }
@@ -79,7 +83,7 @@ router.post("/:author/:id/upvote", async (req, res, next) => {
 router.post("/:author/:id/downvote", async (req, res, next) => {
   try {
     await Posts.downvotePost(req.params.id);
-    res.status(200).redirect("back");
+    res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
   } catch (err) {
     res.status(500).json({ message: "Unable to downvote post." });
   }
