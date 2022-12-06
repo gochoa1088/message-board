@@ -13,13 +13,17 @@ const findAllPosts = async (query) => {
 
 const findPostsByAuthor = async (author, query) => {
   if (Object.keys(query).length === 2) {
-    return await db("posts")
+    const posts = await db("posts")
       .where("author", author)
       .orderBy(query.value, query.sort);
+      if(posts.length === 0) throw new Error(`Sorry, there are no posts by ${author}!`);
+    return posts;  
   }
-  return await db("posts")
+  const posts = await db("posts")
     .where("author", author)
     .orderBy("created_at", "desc");
+    if(posts.length === 0) throw new Error(`Sorry, there are no posts by ${author}!`);
+  return posts;
 };
 
 // add a post
@@ -32,7 +36,9 @@ const addPost = async (post) => {
 
 // get single post
 const findPost = async (id) => {
-  return await db("posts").where("blog_id", id);
+  const post = await db("posts").where("blog_id", id);
+  if(post.length === 0) throw new Error(`Sorry, could not find post with ID: ${id}.`);
+  return post;
 };
 
 // delete a post

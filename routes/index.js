@@ -27,7 +27,6 @@ router.post("/", async (req, res, next) => {
 router.get("/:author", async function (req, res, next) {
   try {
     const posts = await Posts.findPostsByAuthor(req.params.author, req.query);
-    if(posts.length === 0) throw new Error(`Sorry, there are no posts by ${req.params.author}!`);
     const pageProperties = {
       title: `Posts by ${req.params.author}`,
       author: req.params.author,
@@ -35,10 +34,7 @@ router.get("/:author", async function (req, res, next) {
     };
     res.status(200).render("author", pageProperties);
   } catch (error) {
-    const pageProperties = { 
-      message: "Somthing went wrong!",
-      error
-    }
+    const pageProperties = {message: error.message}
     res.status(500).render("error", pageProperties);
   }
 });
@@ -47,11 +43,10 @@ router.get("/:author", async function (req, res, next) {
 router.get("/:author/:id", async function (req, res, next) {
   try {
     const post = await Posts.findPost(req.params.id);
-    if(post.length === 0) throw new Error(`Could not find post with ID: ${req.params.id}.`);
     const pageProperties = { title: "Edit Post", post };
     res.status(200).render("edit", pageProperties);
   } catch (error) {
-    const pageProperties = {error}
+    const pageProperties = {message: error.message}
     res.status(500).render("error", pageProperties);
   }
 });
