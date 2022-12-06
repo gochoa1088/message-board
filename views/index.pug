@@ -9,9 +9,9 @@ block content
     h3 #{title}
     ul(class="posts-list")
       span(class="sort-links") Sort By: 
-        a(class="sort-link") Most Recent
+        a(href="/" class="sort-link") Most Recent
         span() |
-        a(class="sort-link") Votes
+        a(href="/?value=votes&sort=desc" class="sort-link") Most Votes
       each post in posts 
         li(class="post")
           a(href=`/${post.author}/${post.blog_id}` class="edit-link") Edit

@@ -4,7 +4,10 @@ const config = require("../knexfile");
 const db = knex(config.development);
 
 // get all posts
-const findAllPosts = async () => {
+const findAllPosts = async (query) => {
+  if (Object.keys(query).length === 2) {
+    return await db("posts").orderBy(query.value, query.sort);
+  }
   return await db("posts").orderBy("created_at", "desc");
 };
 

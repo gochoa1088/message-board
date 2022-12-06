@@ -5,7 +5,7 @@ const Posts = require("../models/postsModel");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   try {
-    const posts = await Posts.findAllPosts();
+    const posts = await Posts.findAllPosts(req.query);
     const pageProperties = { title: "Posts", posts };
     res.status(200).render("index", pageProperties);
   } catch (err) {
