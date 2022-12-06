@@ -54,13 +54,23 @@ router.post("/:id/edit", async function (req, res, next) {
   }
 });
 
-// Update Post Votes
-router.post("/:id/vote", async (req, res, next) => {
+// upvote post
+router.post("/:id/upvote", async (req, res, next) => {
   try {
-    await Posts.updatePost(req.params.id, req.body);
+    await Posts.upvotePost(req.params.id);
     res.status(200).redirect("/");
   } catch (err) {
-    res.status(500).json({ message: "Unable to update post." });
+    res.status(500).json({ message: "Unable to upvote post." });
+  }
+});
+
+// downvote post
+router.post("/:id/downvote", async (req, res, next) => {
+  try {
+    await Posts.downvotePost(req.params.id);
+    res.status(200).redirect("/");
+  } catch (err) {
+    res.status(500).json({ message: "Unable to downvote post." });
   }
 });
 
