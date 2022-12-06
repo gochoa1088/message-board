@@ -10,6 +10,9 @@ const findAllPosts = async () => {
 
 // add a post
 const addPost = async (post) => {
+  if (post.author === "") {
+    delete post.author;
+  }
   const [id] = await db("posts").insert(post);
 };
 
