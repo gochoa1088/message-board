@@ -26,8 +26,12 @@ router.post("/", async (req, res, next) => {
 /* GET user page. */
 router.get("/:author", async function (req, res, next) {
   try {
-    const posts = await Posts.findPostsByAuthor(req.params.author);
-    const pageProperties = { title: `Posts by ${req.params.author}`, posts };
+    const posts = await Posts.findPostsByAuthor(req.params.author, req.query);
+    const pageProperties = {
+      title: `Posts by ${req.params.author}`,
+      author: req.params.author,
+      posts,
+    };
     res.status(200).render("author", pageProperties);
   } catch (err) {
     res.status(500).json({ message: "Unable to find posts" });
