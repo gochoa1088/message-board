@@ -9,7 +9,10 @@ router.get("/", async function (req, res, next) {
     const pageProperties = { title: "Posts", posts };
     res.status(200).render("index", pageProperties);
   } catch (err) {
-    res.status(500).json({ message: "Unable to find posts" });
+    const pageProperties= {
+      message: err.message
+    }
+    res.status(500).render("error", pageProperties);
   }
 });
 
@@ -19,7 +22,10 @@ router.post("/", async (req, res, next) => {
     await Posts.addPost(req.body);
     res.status(200).redirect("/");
   } catch (err) {
-    res.status(500).json({ message: "Unable to add post" });
+    const pageProperties = {
+      message: err.message
+    }
+    res.status(500).render("error", pageProperties);
   }
 });
 
@@ -33,8 +39,10 @@ router.get("/:author", async function (req, res, next) {
       posts,
     };
     res.status(200).render("author", pageProperties);
-  } catch (error) {
-    const pageProperties = {message: error.message}
+  } catch (err) {
+    const pageProperties = {
+      message: err.message
+    }
     res.status(500).render("error", pageProperties);
   }
 });
@@ -45,8 +53,10 @@ router.get("/:author/:id", async function (req, res, next) {
     const post = await Posts.findPost(req.params.id);
     const pageProperties = { title: "Edit Post", post };
     res.status(200).render("edit", pageProperties);
-  } catch (error) {
-    const pageProperties = {message: error.message}
+  } catch (err) {
+    const pageProperties = {
+      message: err.message
+    }
     res.status(500).render("error", pageProperties);
   }
 });
@@ -57,7 +67,10 @@ router.post("/:author/:id/delete", async function (req, res, next) {
     await Posts.deletePost(req.params.id);
     res.status(200).redirect("/");
   } catch (err) {
-    res.status(500).json({ message: "Unable to delete post." });
+    const pageProperties = {
+      message: err.message
+    }
+    res.status(500).render("error", pageProperties);
   }
 });
 
@@ -67,7 +80,8 @@ router.post("/:author/:id/edit", async function (req, res, next) {
     await Posts.updatePost(req.params.id, req.body);
     res.status(200).redirect("/");
   } catch {
-    res.status(500).json({ message: "Unable to update post." });
+    const pageProperties = { message: err.message }
+    res.status(500).render("error", pageProperties);
   }
 });
 
@@ -77,7 +91,8 @@ router.post("/:author/:id/upvote", async (req, res, next) => {
     await Posts.upvotePost(req.params.id);
     res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
   } catch (err) {
-    res.status(500).json({ message: "Unable to upvote post." });
+    const pageProperties = { message: err.message }
+    res.status(500).render("error", pageProperties);
   }
 });
 
@@ -87,7 +102,8 @@ router.post("/:author/:id/downvote", async (req, res, next) => {
     await Posts.downvotePost(req.params.id);
     res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
   } catch (err) {
-    res.status(500).json({ message: "Unable to downvote post." });
+    const pageProperties = { message: err.message }
+    res.status(500).render("error", pageProperties);
   }
 });
 

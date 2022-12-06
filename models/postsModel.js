@@ -16,7 +16,8 @@ const findPostsByAuthor = async (author, query) => {
     const posts = await db("posts")
       .where("author", author)
       .orderBy(query.value, query.sort);
-      if(posts.length === 0) throw new Error(`Sorry, there are no posts by ${author}!`);
+    console.log(posts)
+    if(posts.length === 0 ) throw new Error(`Sorry, there are no posts by ${author}!`);
     return posts;  
   }
   const posts = await db("posts")
