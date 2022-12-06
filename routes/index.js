@@ -16,7 +16,6 @@ router.get("/", async function (req, res, next) {
 /* POST home page. */
 router.post("/", async (req, res, next) => {
   try {
-    console.log(req.body);
     await Posts.addPost(req.body);
     res.status(200).redirect("/");
   } catch (err) {
@@ -28,7 +27,7 @@ router.post("/", async (req, res, next) => {
 router.get("/:id", async function (req, res, next) {
   try {
     const post = await Posts.findPost(req.params.id);
-    const pageProperties = { title: "Edit Post", post }
+    const pageProperties = { title: "Edit Post", post };
     res.status(200).render("edit", pageProperties);
   } catch (err) {
     res.status(500).json({ message: "Unable to find post." });
@@ -43,7 +42,7 @@ router.post("/:id/delete", async function (req, res, next) {
   } catch (err) {
     res.status(500).json({ message: "Unable to delete post." });
   }
-})
+});
 
 //Edit post
 router.post("/:id/edit", async function (req, res, next) {
