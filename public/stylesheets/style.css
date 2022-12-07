@@ -13,6 +13,12 @@ a {
   align-items: center;
 }
 
+.page-container h1 {
+  margin-top: 0;
+  margin-bottom: 36px;
+  font-size: x-large;
+}
+
 .submit-container {
   position: relative;
   display: flex;
