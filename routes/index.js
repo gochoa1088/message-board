@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Posts = require("../models/postsModel");
 
-/* GET home page. */
+// GET home page
 router.get("/", async function (req, res, next) {
   try {
     const posts = await Posts.findAllPosts(req.query);
@@ -13,7 +13,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/* POST home page. */
+// POST home page
 router.post("/", async (req, res, next) => {
   try {
     await Posts.addPost(req.body);
@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-/* GET user page. */
+// GET user page
 router.get("/author/:author", async function (req, res, next) {
   try {
     const { author } = req.params;
@@ -50,7 +50,7 @@ router.get("/author/:author/post/:id", async function (req, res, next) {
   }
 });
 
-// Delete post
+// DELETE post
 router.post("/author/:author/post/:id/delete", async function (req, res, next) {
   try {
     await Posts.deletePost(req.params.id);
@@ -60,7 +60,7 @@ router.post("/author/:author/post/:id/delete", async function (req, res, next) {
   }
 });
 
-//Edit post
+// UPDATE post
 router.post("/author/:author/post/:id/edit", async function (req, res, next) {
   try {
     await Posts.updatePost(req.params.id, req.body);
@@ -70,7 +70,7 @@ router.post("/author/:author/post/:id/edit", async function (req, res, next) {
   }
 });
 
-// upvote post
+// UPVOTE post
 router.post("/author/:author/post/:id/upvote", async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -81,7 +81,7 @@ router.post("/author/:author/post/:id/upvote", async (req, res, next) => {
   }
 });
 
-// downvote post
+// DOWNVOTE post
 router.post("/author/:author/post/:id/downvote", async (req, res, next) => {
   try {
     const { id } = req.params;
