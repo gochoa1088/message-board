@@ -6,17 +6,17 @@ block content
     a(href="/") &#8592 Back
     ul(class="posts-list")
       span(class="sort-links") Sort By: 
-          a(href=`/${author}` class="sort-link") Most Recent
+          a(href=`/author/${author}` class="sort-link") Most Recent
           span() |
-          a(href=`/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
+          a(href=`/author/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
       each post in posts 
         li(class="post" id=post.blog_id)
-          a(href=`/${author}/${post.blog_id}` class="edit-link") Edit
+          a(href=`/author/${author}/post/${post.blog_id}` class="edit-link") Edit
           div(class="vote-container")
-            form(method="post" action=`/${author}/${post.blog_id}/upvote`)
+            form(method="post" action=`/author/${author}/post/${post.blog_id}/upvote`)
               button(type="submit") &#8593
             p #{post.votes}
-            form(method="post" action=`/${author}/${post.blog_id}/downvote`)
+            form(method="post" action=`/author/${author}/post/${post.blog_id}/downvote`)
               button(type="submit") &#8595
           div(class="post-message") 
             p #{post.content}
