@@ -9,23 +9,23 @@ block content
     h3 #{title}
     ul(class="posts-list")
       span(class="sort-links") Sort By: 
-        a(href="/api" class="sort-link") Most Recent
+        a(href="/" class="sort-link") Most Recent
         span() |
-        a(href="/api?value=votes&sort=desc" class="sort-link") Most Votes
+        a(href="/?value=votes&sort=desc" class="sort-link") Most Votes
       each post in posts 
         li(class="post" id=post.blog_id)
-          a(href=`/api/author/${post.author}/post/${post.blog_id}` class="edit-link") Edit
+          a(href=`/author/${post.author}/post/${post.blog_id}` class="edit-link") Edit
           div(class="vote-container")
-            form(method="post" action=`/api/author/${post.author}/post/${post.blog_id}/upvote`)
+            form(method="post" action=`/author/${post.author}/post/${post.blog_id}/upvote`)
               button(type="submit") &#8593
             p #{post.votes}
-            form(method="post" action=`/api/author/${post.author}/post/${post.blog_id}/downvote`)
+            form(method="post" action=`/author/${post.author}/post/${post.blog_id}/downvote`)
               button(type="submit") &#8595
           div(class="post-message") 
             p #{post.content}
           div(class="post-info")
             p 
               |Posted by 
-              a(href=`/api/author/${post.author}` class="author-link") #{post.author} 
+              a(href=`/author/${post.author}` class="author-link") #{post.author} 
               |at #{post.created_at}
   
