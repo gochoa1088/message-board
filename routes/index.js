@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Posts = require("../models/postsModel");
 
-/* GET home page. */
+// GET home page
 router.get("/", async function (req, res, next) {
   try {
     const posts = await Posts.findAllPosts(req.query);
@@ -13,7 +13,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/* POST home page. */
+// POST home page
 router.post("/", async (req, res, next) => {
   try {
     await Posts.addPost(req.body);
@@ -23,8 +23,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-/* GET user page. */
-router.get("/:author", async function (req, res, next) {
+// GET user page
+router.get("/author/:author", async function (req, res, next) {
   try {
     const { author } = req.params;
     const posts = await Posts.findPostsByAuthor(author, req.query);
@@ -40,7 +40,7 @@ router.get("/:author", async function (req, res, next) {
 });
 
 // GET individual post
-router.get("/:author/:id", async function (req, res, next) {
+router.get("/author/:author/post/:id", async function (req, res, next) {
   try {
     const post = await Posts.findPost(req.params.id);
     const pageProperties = { title: "Edit Post", post };
@@ -50,8 +50,8 @@ router.get("/:author/:id", async function (req, res, next) {
   }
 });
 
-// Delete post
-router.post("/:author/:id/delete", async function (req, res, next) {
+// DELETE post
+router.post("/author/:author/post/:id/delete", async function (req, res, next) {
   try {
     await Posts.deletePost(req.params.id);
     res.status(200).redirect("/");
@@ -60,8 +60,8 @@ router.post("/:author/:id/delete", async function (req, res, next) {
   }
 });
 
-//Edit post
-router.post("/:author/:id/edit", async function (req, res, next) {
+// UPDATE post
+router.post("/author/:author/post/:id/edit", async function (req, res, next) {
   try {
     await Posts.updatePost(req.params.id, req.body);
     res.status(200).redirect("/");
@@ -70,8 +70,8 @@ router.post("/:author/:id/edit", async function (req, res, next) {
   }
 });
 
-// upvote post
-router.post("/:author/:id/upvote", async (req, res, next) => {
+// UPVOTE post
+router.post("/author/:author/post/:id/upvote", async (req, res, next) => {
   try {
     const { id } = req.params;
     await Posts.upvotePost(id);
@@ -81,8 +81,8 @@ router.post("/:author/:id/upvote", async (req, res, next) => {
   }
 });
 
-// downvote post
-router.post("/:author/:id/downvote", async (req, res, next) => {
+// DOWNVOTE post
+router.post("/author/:author/post/:id/downvote", async (req, res, next) => {
   try {
     const { id } = req.params;
     await Posts.downvotePost(id);
