@@ -46,7 +46,14 @@ const addPost = async (post) => {
   if (post.author === "") {
     delete post.author;
   }
-  const [id] = await db("posts").insert(post);
+  if (post.content === "") {
+    throw new Error("Cannot submit empty post!");
+  }
+  try {
+    await db("posts").insert(post);
+  } catch (err) {
+    throw new Error("Unable to add post!");
+  }
 };
 
 // get single post
