@@ -9,10 +9,7 @@ router.get("/", async function (req, res, next) {
     const pageProperties = { title: "Posts", posts };
     res.status(200).render("index", pageProperties);
   } catch (err) {
-    const pageProperties= {
-      message: err.message
-    }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 
@@ -22,28 +19,23 @@ router.post("/", async (req, res, next) => {
     await Posts.addPost(req.body);
     res.status(200).redirect("/");
   } catch (err) {
-    const pageProperties = {
-      message: err.message
-    }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 
 /* GET user page. */
 router.get("/:author", async function (req, res, next) {
   try {
-    const posts = await Posts.findPostsByAuthor(req.params.author, req.query);
+    const { author } = req.params;
+    const posts = await Posts.findPostsByAuthor(author, req.query);
     const pageProperties = {
-      title: `Posts by ${req.params.author}`,
-      author: req.params.author,
+      title: `Posts by ${author}`,
+      author,
       posts,
     };
     res.status(200).render("author", pageProperties);
   } catch (err) {
-    const pageProperties = {
-      message: err.message
-    }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 
@@ -54,10 +46,7 @@ router.get("/:author/:id", async function (req, res, next) {
     const pageProperties = { title: "Edit Post", post };
     res.status(200).render("edit", pageProperties);
   } catch (err) {
-    const pageProperties = {
-      message: err.message
-    }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 
@@ -67,10 +56,7 @@ router.post("/:author/:id/delete", async function (req, res, next) {
     await Posts.deletePost(req.params.id);
     res.status(200).redirect("/");
   } catch (err) {
-    const pageProperties = {
-      message: err.message
-    }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 
@@ -80,30 +66,29 @@ router.post("/:author/:id/edit", async function (req, res, next) {
     await Posts.updatePost(req.params.id, req.body);
     res.status(200).redirect("/");
   } catch {
-    const pageProperties = { message: err.message }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 
 // upvote post
 router.post("/:author/:id/upvote", async (req, res, next) => {
   try {
-    await Posts.upvotePost(req.params.id);
-    res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
+    const { id } = req.params;
+    await Posts.upvotePost(id);
+    res.status(200).redirect(req.get("Referrer") + `#${id}`);
   } catch (err) {
-    const pageProperties = { message: err.message }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 
 // downvote post
 router.post("/:author/:id/downvote", async (req, res, next) => {
   try {
-    await Posts.downvotePost(req.params.id);
-    res.status(200).redirect(req.get("Referrer") + `#${req.params.id}`);
+    const { id } = req.params;
+    await Posts.downvotePost(id);
+    res.status(200).redirect(req.get("Referrer") + `#${id}`);
   } catch (err) {
-    const pageProperties = { message: err.message }
-    res.status(500).render("error", pageProperties);
+    next(err);
   }
 });
 

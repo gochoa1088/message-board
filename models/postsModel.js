@@ -10,8 +10,10 @@ const findAllPosts = async (query) => {
       return await db("posts").orderBy(query.value, query.sort);
     }
     return await db("posts").orderBy("created_at", "desc");
-  } catch(error) {
-    if(error.code === 'SQLITE_ERROR') throw new Error("Ivalid query.")
+  } catch (error) {
+    if (error.code === "SQLITE_ERROR") {
+      throw new Error("Invalid query.");
+    }
   }
 };
 
@@ -21,18 +23,18 @@ const findPostsByAuthor = async (author, query) => {
     if (Object.keys(query).length === 2) {
       posts = await db("posts")
         .where("author", author)
-        .orderBy(query.value, query.sort); 
+        .orderBy(query.value, query.sort);
     } else {
       posts = await db("posts")
         .where("author", author)
         .orderBy("created_at", "desc");
     }
-    if(!posts.length) {
-      throw new Error(`Sorry, there are no posts by ${author}!`)
+    if (!posts.length) {
+      throw new Error(`Sorry, there are no posts by ${author}!`);
     }
     return posts;
-  } catch (error){
-    if(error.code === 'SQLITE_ERROR') throw new Error("Ivalid query.")
+  } catch (error) {
+    if (error.code === "SQLITE_ERROR") throw new Error("Invalid query.");
     throw error;
   }
 };
@@ -48,7 +50,8 @@ const addPost = async (post) => {
 // get single post
 const findPost = async (id) => {
   const post = await db("posts").where("blog_id", id);
-  if(!post.length) throw new Error(`Sorry, could not find post with ID: ${id}.`);
+  if (!post.length)
+    throw new Error(`Sorry, could not find post with ID: ${id}.`);
   return post;
 };
 
