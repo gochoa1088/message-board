@@ -34,7 +34,9 @@ const findPostsByAuthor = async (author, query) => {
     }
     return posts;
   } catch (error) {
-    if (error.code === "SQLITE_ERROR") throw new Error("Invalid query.");
+    if (error.code === "SQLITE_ERROR") {
+      throw new Error("Invalid query.");
+    }
     throw error;
   }
 };
@@ -50,8 +52,9 @@ const addPost = async (post) => {
 // get single post
 const findPost = async (id) => {
   const post = await db("posts").where("blog_id", id);
-  if (!post.length)
+  if (!post.length) {
     throw new Error(`Sorry, could not find post with ID: ${id}.`);
+  }
   return post;
 };
 
