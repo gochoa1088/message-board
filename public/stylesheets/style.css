@@ -94,7 +94,7 @@ a {
   border-radius: 4px;
 }
 
-.submit-container button {
+.home-submit-button {
   align-self: flex-end;
   border-radius: 15px;
   background-color: #0084ff;
@@ -119,12 +119,12 @@ a {
   padding: 0;
   width: 100%;
   margin: 0;
+  gap: 20px;
 }
 
 .post {
   position: relative;
   display: flex;
-  margin-top: 24px;
   border: solid rgb(177, 177, 177) 1px;
   background-color: #ffffff;
   border-radius: 5px;
@@ -200,12 +200,13 @@ a {
 
 .sort-links {
   position: relative;
+  margin-bottom: 8px;
 }
 
 .sort-link {
   text-decoration: none;
   cursor: pointer;
-  margin: 4px;
+  margin: 0 4px;
 }
 
 .sort-link:hover {
@@ -248,15 +249,28 @@ a {
 
   .page-heading {
     font-size: large;
+    margin: 24px 0;
   }
 
-  .submit-container button {
-    width: 40%;
+  .author-input {
+    font-size: smaller;
+  }
+
+  .input-text-container span {
+    font-size: xx-small;
+  }
+
+  .submit-container textarea {
+    font-size: small;
+  }
+
+  .home-submit-button {
+    width: 30%;
+  }
+  .edit-button {
+    width: 100%;
   }
 }
 
 @media (max-width: 390px) {
-  .input-text-container span {
-    display: none;
-  }
 }
