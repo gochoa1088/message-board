@@ -2,7 +2,7 @@ extends layout
 
 block content 
   div(class="page-container")
-    h3()=title
+    h1(class="page-heading")=title
     form(method="POST", class="submit-container" action=`/author/${post[0].author}/post/${post[0].id}/edit` id="edit")
       a(href=`/author/${post[0].author}` class="back-arrow") &#8592 Back
       textarea(name="content", cols="30", rows="10") #{post[0].content}

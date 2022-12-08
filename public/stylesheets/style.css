@@ -1,16 +1,53 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #edf0fa;
 }
 
 a {
   color: #00b7ff;
 }
 
+.menu {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #0084ff;
+  height: 48px;
+  width: 100vw;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  color: #f7f9fa;
+  text-decoration: none;
+  margin-left: 16px;
+}
+.menu-item:hover {
+  text-decoration: underline;
+}
+
 .page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.page-heading {
+  margin-top: 24px;
+  margin-bottom: 36px;
+  font-size: x-large;
 }
 
 .submit-container {
@@ -21,9 +58,18 @@ a {
   max-width: 800px;
 }
 
+.input-text-container {
+  color: #ababab;
+  font-size: smaller;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
 .author-input {
   width: 20%;
-  margin-bottom: 16px;
+  padding: 8px;
+  border: solid gray 1px;
+  border-radius: 4px;
 }
 
 .back-arrow {
@@ -39,6 +85,8 @@ a {
   padding: 16px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: medium;
+  border: solid gray 1px;
+  border-radius: 4px;
 }
 
 .submit-container button {
@@ -49,7 +97,7 @@ a {
   border: none;
   padding: 10px;
   margin-top: 4px;
-  width: 100px;
+  width: 150px;
   cursor: pointer;
 }
 
@@ -65,6 +113,7 @@ a {
   align-items: center;
   padding: 0;
   width: 100%;
+  margin: 0;
 }
 
 .post {
@@ -72,6 +121,7 @@ a {
   display: flex;
   margin-top: 24px;
   border: solid rgb(177, 177, 177) 1px;
+  background-color: #ffffff;
   border-radius: 5px;
   min-height: 161px;
   width: 100%;
@@ -83,13 +133,9 @@ a {
   top: 0;
   right: 0;
   margin: 10px;
-  font-size: small;
+  font-size: large;
   cursor: pointer;
   text-decoration: none;
-}
-
-.edit-link:hover {
-  text-decoration: underline;
 }
 
 .vote-container {
@@ -102,6 +148,14 @@ a {
   font-size: small;
 }
 
+.positive-votes {
+  color: #00b7ff;
+}
+
+.negative-votes {
+  color: red;
+}
+
 .vote-container button {
   border: none;
   background-color: transparent;
@@ -109,8 +163,12 @@ a {
 }
 
 .post-message {
-  padding: 16px;
+  padding: 16px 40px 24px 16px;
   word-break: break-word;
+}
+
+.post-message p {
+  margin: 0;
 }
 
 .post-info {
@@ -120,7 +178,7 @@ a {
 }
 
 .post-info p {
-  font-size: xx-small;
+  font-size: x-small;
   font-style: italic;
   margin-right: 10px;
   color: #ababab;
@@ -133,6 +191,10 @@ a {
 
 .author-link:hover {
   text-decoration: underline;
+}
+
+.sort-links {
+  position: relative;
 }
 
 .sort-link {
@@ -148,4 +210,28 @@ a {
 .sort-links {
   width: 100%;
   max-width: 800px;
+}
+
+.error-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid red 5px;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.error-heading {
+  color: red;
+  margin: 24px;
+}
+
+.error-home-link {
+  font-size: large;
+  text-decoration: none;
+}
+
+.error-home-link:hover {
+  text-decoration: underline;
 }

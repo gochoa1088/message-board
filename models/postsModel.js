@@ -3,6 +3,7 @@ const config = require("../knexfile");
 
 const db = knex(config.development);
 
+// get all posts
 const findAllPosts = async (query) => {
   try {
     if (Object.keys(query).length === 2) {
@@ -40,6 +41,7 @@ const findPostsByAuthor = async (author, query) => {
   }
 };
 
+// add a post
 const addPost = async (post) => {
   if (post.author === "") {
     delete post.author;
@@ -54,6 +56,7 @@ const addPost = async (post) => {
   }
 };
 
+// get single post
 const findPost = async (id) => {
   const post = await db("posts").where("id", id);
   if (!post.length) {
@@ -62,10 +65,12 @@ const findPost = async (id) => {
   return post;
 };
 
+// delete a post
 const deletePost = async (id) => {
   await db("posts").where("id", id).delete();
 };
 
+// update a post
 const updatePost = async (id, body) => {
   await db("posts")
     .where("id", id)
