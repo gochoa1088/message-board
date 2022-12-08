@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #edf0fa;
 }
 
 a {
@@ -43,7 +44,7 @@ a {
   align-items: center;
 }
 
-.page-container h1 {
+.page-heading {
   margin-top: 24px;
   margin-bottom: 36px;
   font-size: x-large;
@@ -120,6 +121,7 @@ a {
   display: flex;
   margin-top: 24px;
   border: solid rgb(177, 177, 177) 1px;
+  background-color: #ffffff;
   border-radius: 5px;
   min-height: 161px;
   width: 100%;
@@ -146,12 +148,12 @@ a {
   font-size: small;
 }
 
-.negative-votes {
-  color: red;
+.positive-votes {
+  color: #00b7ff;
 }
 
-.positive-votes {
-  color: rgb(1, 200, 1);
+.negative-votes {
+  color: red;
 }
 
 .vote-container button {
@@ -208,4 +210,28 @@ a {
 .sort-links {
   width: 100%;
   max-width: 800px;
+}
+
+.error-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid red 5px;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.error-heading {
+  color: red;
+  margin: 24px;
+}
+
+.error-home-link {
+  font-size: large;
+  text-decoration: none;
+}
+
+.error-home-link:hover {
+  text-decoration: underline;
 }
