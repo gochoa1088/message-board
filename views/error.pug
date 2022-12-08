@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  div(class="page-container")
+    div(class="error-container")
+      h1(class="error-heading") ⚠️ Something went wrong! ⚠️
+      h2= message
+      pre #{message.stack}
+      a(href="/" class="error-home-link") Go Home
