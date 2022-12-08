@@ -11,7 +11,7 @@ block content
         a(href=`/author/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
       each post in posts 
         li(class="post" id=post.blog_id)
-          a(href=`/author/${author}/post/${post.blog_id}` class="edit-link") Edit
+          a(href=`/author/${author}/post/${post.blog_id}` class="edit-link") &#9998
           div(class="vote-container")
             form(method="post" action=`/author/${author}/post/${post.blog_id}/upvote`)
               button(type="submit") &#8593

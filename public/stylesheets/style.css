@@ -131,13 +131,9 @@ a {
   top: 0;
   right: 0;
   margin: 10px;
-  font-size: small;
+  font-size: large;
   cursor: pointer;
   text-decoration: none;
-}
-
-.edit-link:hover {
-  text-decoration: underline;
 }
 
 .vote-container {
