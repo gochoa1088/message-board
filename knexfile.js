@@ -30,13 +30,7 @@ module.exports = {
   },
   production: {
     client: "pg",
-    // connection: {
-    //   database: process.env.DB_REN,
-    //   user: process.env.USER_REN,
-    //   password: process.env.PW_REN,
-    //   host: process.env.HOSTNAME_REN,
-    // },
-    connection: process.env.HOSTNAME_REN,
+    connection: process.env.DB_CONNECTION,
     pool: {
       min: 2,
       max: 10,
