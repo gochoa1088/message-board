@@ -2,9 +2,10 @@ extends layout
 
 block content
   div(class="page-container")
-    h1(class="page-heading") #{title}
+    div(class="heading-container")
+      h1(class="page-heading") #{title}
+      a(href="/" class="back-arrow") &#8592 Back
     span(class="sort-links") Sort By: 
-        a(href="/" class="back-arrow") &#8592 Back
         a(href=`/author/${author}` class="sort-link") Most Recent
         span() |
         a(href=`/author/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
