@@ -15,7 +15,12 @@ block content
           div(class="vote-container")
             form(method="post" action=`/author/${author}/post/${post.blog_id}/upvote`)
               button(type="submit") &#8593
-            p #{post.votes}
+            if post.votes < 0 
+              p(class="negative-votes") #{post.votes}
+            else if post.votes === 0
+              p #{post.votes}
+            else 
+              p(class="positive-votes") #{post.votes}
             form(method="post" action=`/author/${author}/post/${post.blog_id}/downvote`)
               button(type="submit") &#8595
           div(class="post-message") 

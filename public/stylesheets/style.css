@@ -146,6 +146,14 @@ a {
   font-size: small;
 }
 
+.negative-votes {
+  color: red;
+}
+
+.positive-votes {
+  color: rgb(1, 200, 1);
+}
+
 .vote-container button {
   border: none;
   background-color: transparent;
