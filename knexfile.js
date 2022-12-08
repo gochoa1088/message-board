@@ -30,17 +30,12 @@ module.exports = {
   },
   production: {
     client: "pg",
-    connection: {
-      database: "message-board",
-      user: process.env.USER,
-      password: process.env.PW,
-    },
+    connection: process.env.DB_CONNECTION,
     pool: {
       min: 2,
       max: 10,
     },
     migrations: {
-      tableName: "knex_migrations",
       directory: "./migrations",
     },
   },
