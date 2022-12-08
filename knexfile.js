@@ -34,6 +34,7 @@ module.exports = {
       database: process.env.DB_REN,
       user: process.env.USER_REN,
       password: process.env.PW_REN,
+      host: process.env.HOSTNAME_REN,
     },
     pool: {
       min: 2,
