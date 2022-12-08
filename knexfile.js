@@ -13,7 +13,7 @@ module.exports = {
   },
 
   production: {
-    client: "postgresql",
+    client: "pg",
     connection: {
       database: "message-board",
       user: process.env.USERNAME,
@@ -25,6 +25,7 @@ module.exports = {
     },
     migrations: {
       tableName: "knex_migrations",
+      directory: "./migrations",
     },
   },
 };
