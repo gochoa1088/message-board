@@ -94,7 +94,7 @@ a {
   border-radius: 4px;
 }
 
-.home-submit-button {
+.submit-container button {
   align-self: flex-end;
   border-radius: 15px;
   background-color: #0084ff;
@@ -108,7 +108,8 @@ a {
 
 .buttons-container {
   display: flex;
-  align-self: flex-end;
+  justify-content: flex-end;
+  width: 100%;
   column-gap: 4px;
 }
 
@@ -252,8 +253,12 @@ a {
     margin: 24px 0;
   }
 
+  .post-message {
+    font-size: small;
+  }
+
   .author-input {
-    font-size: smaller;
+    font-size: small;
   }
 
   .input-text-container span {
@@ -264,13 +269,9 @@ a {
     font-size: small;
   }
 
-  .home-submit-button {
+  .submit-container button {
     width: 30%;
+    padding: 8px;
+    font-size: smaller;
   }
-  .edit-button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 390px) {
 }
