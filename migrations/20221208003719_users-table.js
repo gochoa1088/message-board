@@ -5,9 +5,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable("users", (table) => {
     table.increments("id");
-    table.text("author", 128).defaultTo("Anon");
+    table.text("author", 128);
     table.integer("votes").defaultTo(0);
-    table.timestamps(true);
+    table.timestamp("created_at");
   });
 };
 
