@@ -16,10 +16,10 @@ block content
         span() |
         a(href="/?value=votes&sort=desc" class="sort-link") Most Votes
       each post in posts 
-        li(class="post" id=post.blog_id)
-          a(href=`/author/${post.author}/post/${post.blog_id}` class="edit-link") &#9998
+        li(class="post" id=post.id)
+          a(href=`/author/${post.author}/post/${post.id}` class="edit-link") &#9998
           div(class="vote-container")
-            form(method="post" action=`/author/${post.author}/post/${post.blog_id}/upvote`)
+            form(method="post" action=`/author/${post.author}/post/${post.id}/upvote`)
               button(type="submit") &#8593
             if post.votes < 0 
               p(class="negative-votes") #{post.votes}
@@ -27,7 +27,7 @@ block content
               p #{post.votes}
             else 
               p(class="positive-votes") #{post.votes}
-            form(method="post" action=`/author/${post.author}/post/${post.blog_id}/downvote`)
+            form(method="post" action=`/author/${post.author}/post/${post.id}/downvote`)
               button(type="submit") &#8595
           div(class="post-message") 
             p #{post.content}
