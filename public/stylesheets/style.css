@@ -112,6 +112,7 @@ a {
   align-items: center;
   padding: 0;
   width: 100%;
+  margin: 0;
 }
 
 .post {
@@ -184,6 +185,10 @@ a {
 
 .author-link:hover {
   text-decoration: underline;
+}
+
+.sort-links {
+  position: relative;
 }
 
 .sort-link {
