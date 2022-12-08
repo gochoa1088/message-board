@@ -3,6 +3,7 @@ const config = require("../knexfile");
 
 const db = knex(config.development);
 
+// get all posts
 const findAllPosts = async (query) => {
   try {
     if (Object.keys(query).length === 2) {
@@ -40,6 +41,7 @@ const findPostsByAuthor = async (author, query) => {
   }
 };
 
+// add a post
 const addPost = async (post) => {
   if (post.author === "") {
     delete post.author;
@@ -54,30 +56,33 @@ const addPost = async (post) => {
   }
 };
 
+// get single post
 const findPost = async (id) => {
-  const post = await db("posts").where("blog_id", id);
+  const post = await db("posts").where("id", id);
   if (!post.length) {
     throw new Error(`Sorry, could not find post with ID: ${id}.`);
   }
   return post;
 };
 
+// delete a post
 const deletePost = async (id) => {
-  await db("posts").where("blog_id", id).delete();
+  await db("posts").where("id", id).delete();
 };
 
+// update a post
 const updatePost = async (id, body) => {
   await db("posts")
-    .where("blog_id", id)
+    .where("id", id)
     .update({ ...body, updated_at: new Date().toISOString() });
 };
 
 const upvotePost = async (id, body) => {
-  await db("posts").where("blog_id", id).increment("votes", 1);
+  await db("posts").where("id", id).increment("votes", 1);
 };
 
 const downvotePost = async (id, body) => {
-  await db("posts").where("blog_id", id).decrement("votes", 1);
+  await db("posts").where("id", id).decrement("votes", 1);
 };
 
 module.exports = {

@@ -2,21 +2,26 @@ extends layout
 
 block content
   div(class="page-container")
-    h3 #{title}
-    a(href="/") &#8592 Back
+    h1(class="page-heading") #{title}
     ul(class="posts-list")
       span(class="sort-links") Sort By: 
-          a(href=`/author/${author}` class="sort-link") Most Recent
-          span() |
-          a(href=`/author/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
+        a(href="/" class="back-arrow") &#8592 Back
+        a(href=`/author/${author}` class="sort-link") Most Recent
+        span() |
+        a(href=`/author/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
       each post in posts 
-        li(class="post" id=post.blog_id)
-          a(href=`/author/${author}/post/${post.blog_id}` class="edit-link") Edit
+        li(class="post" id=post.id)
+          a(href=`/author/${author}/post/${post.id}` class="edit-link") &#9998
           div(class="vote-container")
-            form(method="post" action=`/author/${author}/post/${post.blog_id}/upvote`)
+            form(method="post" action=`/author/${author}/post/${post.id}/upvote`)
               button(type="submit") &#8593
-            p #{post.votes}
-            form(method="post" action=`/author/${author}/post/${post.blog_id}/downvote`)
+            if post.votes < 0 
+              p(class="negative-votes") #{post.votes}
+            else if post.votes === 0
+              p #{post.votes}
+            else 
+              p(class="positive-votes") #{post.votes}
+            form(method="post" action=`/author/${author}/post/${post.id}/downvote`)
               button(type="submit") &#8595
           div(class="post-message") 
             p #{post.content}
