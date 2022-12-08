@@ -1,4 +1,4 @@
-const db = require("../data/dbConfig");
+const db = require("../dbConfig");
 
 // get all posts
 const findAllPosts = async (query) => {
