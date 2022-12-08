@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "npm i && node ./bin/www",
+    "build": "npm i && npx knex migrate:latest",
     "start": "node ./bin/www",
     "mac-dev": "DEBUG=message-board:* nodemon ./bin/www",
     "win-dev": "set DEBUG=message-board:* && nodemon ./bin/www"
