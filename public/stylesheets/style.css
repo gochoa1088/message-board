@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #edf0fa;
 }
@@ -42,6 +41,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 50px;
 }
 
 .page-heading {
@@ -59,10 +59,13 @@ a {
 }
 
 .input-text-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   color: #ababab;
   font-size: smaller;
   font-style: italic;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .author-input {
@@ -70,11 +73,19 @@ a {
   padding: 8px;
   border: solid gray 1px;
   border-radius: 4px;
+  min-width: 100px;
+}
+
+.heading-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .back-arrow {
   position: absolute;
-  top: -32px;
   left: 0;
   font-size: medium;
   text-decoration: none;
@@ -103,7 +114,8 @@ a {
 
 .buttons-container {
   display: flex;
-  align-self: flex-end;
+  justify-content: flex-end;
+  width: 100%;
   column-gap: 4px;
 }
 
@@ -114,12 +126,12 @@ a {
   padding: 0;
   width: 100%;
   margin: 0;
+  gap: 20px;
 }
 
 .post {
   position: relative;
   display: flex;
-  margin-top: 24px;
   border: solid rgb(177, 177, 177) 1px;
   background-color: #ffffff;
   border-radius: 5px;
@@ -163,7 +175,7 @@ a {
 }
 
 .post-message {
-  padding: 16px 40px 24px 16px;
+  padding: 16px 40px 32px 16px;
   word-break: break-word;
 }
 
@@ -195,12 +207,13 @@ a {
 
 .sort-links {
   position: relative;
+  margin-bottom: 8px;
 }
 
 .sort-link {
   text-decoration: none;
   cursor: pointer;
-  margin: 4px;
+  margin: 0 4px;
 }
 
 .sort-link:hover {
@@ -220,6 +233,7 @@ a {
   border: solid red 5px;
   border-radius: 10px;
   padding: 16px;
+  margin: 24px 0;
 }
 
 .error-heading {
@@ -234,4 +248,57 @@ a {
 
 .error-home-link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 40px 15px;
+  }
+
+  .page-heading {
+    font-size: large;
+    margin: 24px 0;
+  }
+
+  .back-arrow {
+    font-size: small;
+  }
+
+  .author-input {
+    font-size: small;
+  }
+
+  .input-text-container span {
+    font-size: xx-small;
+  }
+
+  .submit-container textarea {
+    font-size: small;
+  }
+
+  .submit-container button {
+    width: 25%;
+    padding: 8px;
+    font-size: smaller;
+  }
+
+  .post-message {
+    font-size: small;
+  }
+
+  .sort-links {
+    font-size: smaller;
+  }
+
+  .error-container h1 {
+    font-size: small;
+  }
+
+  .error-container h2 {
+    font-size: small;
+  }
+
+  .error-home-link {
+    font-size: small;
+  }
 }

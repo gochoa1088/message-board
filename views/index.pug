@@ -4,17 +4,17 @@ block content
   div(class="page-container")
     h1(class="page-heading") Message Board
     form(method="post", class="submit-container")
-      span(class="input-text-container") 
+      div(class="input-text-container") 
         input(type="text" class ="author-input" placeholder="Enter name..." name="author")
-        |    Leave field blank to make an anonymous post
+        span Leave field blank to make an anonymous post
       textarea(name="content", cols="30", rows="10", placeholder="Enter text here...", value="")
       button(type="submit") Submit
     h3 #{title}
-    ul(class="posts-list")
-      span(class="sort-links") Sort By: 
+    span(class="sort-links") Sort By: 
         a(href="/" class="sort-link") Most Recent
         span() |
         a(href="/?value=votes&sort=desc" class="sort-link") Most Votes
+    ul(class="posts-list")
       each post in posts 
         li(class="post" id=post.id)
           a(href=`/author/${post.author}/post/${post.id}` class="edit-link") &#9998
