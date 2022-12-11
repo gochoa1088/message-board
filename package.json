@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "npm i && npx knex migrate:latest --env production",
     "start": "node ./bin/www",
     "mac-dev": "DEBUG=message-board:* nodemon ./bin/www",
     "win-dev": "set DEBUG=message-board:* && nodemon ./bin/www"
@@ -10,10 +11,12 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "knex": "^2.3.0",
     "morgan": "~1.9.1",
+    "pg": "^8.8.0",
     "pug": "^3.0.2",
     "sqlite3": "^5.1.2"
   },
