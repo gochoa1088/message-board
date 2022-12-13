@@ -1,27 +1,9 @@
 const PostsModel = require("../models/postsModel");
 
-const getAllConversations = async function (req, res, next) {
-  try {
-    const conversations = await PostsModel.findAllConversations(req.query);
-    const pageProperties = { title: "Message Board", conversations };
-    res.status(200).render("index", pageProperties);
-  } catch (err) {
-    next(err);
-  }
-};
-
-const createNewConversation = async (req, res, next) => {
-  try {
-    await PostsModel.addConversation(req.body);
-    res.status(200).redirect("/");
-  } catch (err) {
-    next(err);
-  }
-};
-
 const getAllPosts = async function (req, res, next) {
+  const { id } = req.params;
   try {
-    const posts = await PostsModel.findAllPosts(req.query);
+    const posts = await PostsModel.findAllPosts(req.query, id);
     const pageProperties = { title: "Posts", posts };
     res.status(200).render("conversation", pageProperties);
   } catch (err) {
@@ -30,8 +12,9 @@ const getAllPosts = async function (req, res, next) {
 };
 
 const createNewPost = async (req, res, next) => {
+  const { id } = req.params;
   try {
-    await PostsModel.addPost(req.body);
+    await PostsModel.addPost(req.body, id);
     res.status(200).redirect("/");
   } catch (err) {
     next(err);
@@ -102,8 +85,6 @@ const downvotePost = async (req, res, next) => {
 };
 
 module.exports = {
-  getAllConversations,
-  createNewConversation,
   getAllPosts,
   createNewPost,
   getAuthorPosts,

@@ -1,12 +1,16 @@
 const db = require("../dbConfig");
 
 // get all posts
-const findAllPosts = async (query) => {
+const findAllPosts = async (query, id) => {
   try {
     if (Object.keys(query).length === 2) {
-      return await db("posts").orderBy(query.value, query.sort);
+      return await db("posts")
+        .where("conversation_id", id)
+        .orderBy(query.value, query.sort);
     }
-    return await db("posts").orderBy("created_at", "desc");
+    return await db("posts")
+      .where("conversation_id", id)
+      .orderBy("created_at", "desc");
   } catch (error) {
     if (error.code === "SQLITE_ERROR") {
       throw new Error("Invalid query.");
@@ -39,7 +43,8 @@ const findPostsByAuthor = async (author, query) => {
 };
 
 // add a post
-const addPost = async (post) => {
+const addPost = async (post, id) => {
+  post.conversation_id = id;
   if (post.author === "") {
     delete post.author;
   }
@@ -84,9 +89,7 @@ const downvotePost = async (id, body) => {
 
 module.exports = {
   addPost,
-  addConversation,
   findAllPosts,
-  findAllConversations,
   findPost,
   deletePost,
   updatePost,

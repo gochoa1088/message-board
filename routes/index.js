@@ -1,15 +1,18 @@
 var express = require("express");
 var router = express.Router();
 const PostsController = require("../controllers/postsController");
+const ConversationsController = require("../controllers/conversationsController");
 
 // GET home page
-router.get("/", PostsController.getAllConversations);
+router.get("/", ConversationsController.getAllConversations);
 
 // POST home page
-router.post("/", PostsController.createNewConversation);
+router.post("/", ConversationsController.createNewConversation);
+
+//
 
 // GET conversation page
-router.get("/", PostsController.getAllPosts);
+router.get("/conversation/:id", PostsController.getAllPosts);
 
 // POST conversation page
 router.post("/conversation/:id", PostsController.createNewPost);

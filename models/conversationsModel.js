@@ -1,6 +1,7 @@
 const db = require("../dbConfig");
 
 const findAllConversations = async (query) => {
+  console.log(query);
   try {
     if (Object.keys(query).length === 2) {
       return await db("conversations").orderBy(query.value, query.sort);
@@ -66,7 +67,6 @@ const deleteConversation = async (id) => {
   await db("posts").where("conversation_id", id).delete();
 };
 
-// update a post
 const updateConversation = async (id, body) => {
   await db("conversations")
     .where("id", id)
