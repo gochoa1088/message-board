@@ -3,10 +3,16 @@ var router = express.Router();
 const PostsController = require("../controllers/postsController");
 
 // GET home page
-router.get("/", PostsController.getAllPosts);
+router.get("/", PostsController.getAllConversations);
 
 // POST home page
-router.post("/", PostsController.createNewPost);
+router.post("/", PostsController.createNewConversation);
+
+// GET conversation page
+router.get("/", PostsController.getAllPosts);
+
+// POST conversation page
+router.post("/conversation/:id", PostsController.createNewPost);
 
 // GET user page
 router.get("/author/:author", PostsController.getAuthorPosts);

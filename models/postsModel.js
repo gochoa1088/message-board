@@ -1,5 +1,32 @@
 const db = require("../dbConfig");
 
+const findAllConversations = async (query) => {
+  try {
+    if (Object.keys(query).length === 2) {
+      return await db("conversations").orderBy(query.value, query.sort);
+    }
+    return await db("conversations").orderBy("created_at", "desc");
+  } catch (error) {
+    if (error.code === "SQLITE_ERROR") {
+      throw new Error("Invalid query.");
+    }
+  }
+};
+
+const addConversation = async (conversation) => {
+  if (conversation.author === "") {
+    delete conversation.author;
+  }
+  if (conversation.content === "") {
+    throw new Error("Cannot submit empty post!");
+  }
+  try {
+    await db("conversations").insert(conversation);
+  } catch (err) {
+    throw new Error("Unable to add post!");
+  }
+};
+
 // get all posts
 const findAllPosts = async (query) => {
   try {
@@ -84,7 +111,9 @@ const downvotePost = async (id, body) => {
 
 module.exports = {
   addPost,
+  addConversation,
   findAllPosts,
+  findAllConversations,
   findPost,
   deletePost,
   updatePost,
