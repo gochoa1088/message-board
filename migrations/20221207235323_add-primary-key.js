@@ -14,6 +14,6 @@ exports.up = function (knex) {
  */
 exports.down = function (knex) {
   return knex.schema.alterTable("posts", (table) => {
-    table.dropColumn("conversation_id");
+    table.renameColumn("id", "blog_id");
   });
 };
