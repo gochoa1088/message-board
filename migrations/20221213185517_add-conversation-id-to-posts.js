@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.alterTable("posts", (table) => {
-    table.renameColumn("blog_id", "id");
+    table.integer("conversation_id");
   });
 };
 
@@ -12,8 +12,4 @@ exports.up = function (knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function (knex) {
-  return knex.schema.alterTable("posts", (table) => {
-    table.dropColumn("conversation_id");
-  });
-};
+exports.down = function (knex) {};
