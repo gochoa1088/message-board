@@ -140,7 +140,7 @@ a {
   border: solid rgb(177, 177, 177) 1px;
   background-color: #ffffff;
   border-radius: 5px;
-  min-height: 161px;
+  min-height: 120px;
   width: 100%;
   max-width: 720px;
 }
