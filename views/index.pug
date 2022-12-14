@@ -8,7 +8,7 @@ block content
         input(type="text" class ="author-input" placeholder="Your name..." name="author")
         input(type="text" class ="author-input" placeholder="Enter topic..." name="subject")
         span Leave field blank to make an anonymous post
-      textarea(name="content", cols="30", rows="5", placeholder="Start a conversation...", value="")
+      textarea(name="content", cols="30", rows="7", placeholder="Start a conversation...", value="")
       button(type="submit") Submit
     h3 #{title}
     span(class="sort-links") Sort By: 
@@ -18,7 +18,6 @@ block content
     ul(class="posts-list")
       each conversation in conversations 
         li(class="post" id=conversation.id)
-          a(href=`/author/${conversation.author}/post/${conversation.id}` class="edit-link") &#9998
           div(class="vote-container")
             form(method="post" action=`/conversation/${conversation.id}/upvote`)
               button(type="submit") &#8593
