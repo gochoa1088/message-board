@@ -17,8 +17,14 @@ router.get(
 
 // UPDATE conversation
 router.post(
-  "/author/:author/post/:id/edit",
+  "/conversation/:id/update",
   ConversationsController.editConversation
+);
+
+//DELETE conversation
+router.post(
+  "/conversation/:id/delete",
+  ConversationsController.deleteConversation
 );
 
 // UPVOTE conversation

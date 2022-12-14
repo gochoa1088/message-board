@@ -48,17 +48,20 @@ const getSinglePost = async function (req, res, next) {
 
 const deletePost = async function (req, res, next) {
   try {
+    const post = await PostsModel.findPost(req.params.id);
     await PostsModel.deletePost(req.params.id);
-    res.status(200).redirect("/");
+    res.status(200).redirect(`/conversation/${post[0].conversation_id}`);
   } catch (err) {
     next(err);
   }
 };
 
 const editPost = async function (req, res, next) {
+  console.log(req.params, req.body);
   try {
+    const post = await PostsModel.findPost(req.params.id);
     await PostsModel.updatePost(req.params.id, req.body);
-    res.status(200).redirect("/");
+    res.status(200).redirect(`/conversation/${post[0].conversation_id}`);
   } catch {
     next(err);
   }

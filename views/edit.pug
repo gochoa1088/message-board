@@ -5,11 +5,19 @@ block content
     div(class="heading-container")
       h1(class="page-heading")=title
       a(href=`/author/${post[0].author}` class="back-arrow") &#8592 Back
-    form(method="POST", class="submit-container" action=`/author/${post[0].author}/post/${post[0].id}/edit` id="edit")
-      textarea(name="content", cols="30", rows="10") #{post[0].content}
-      div(class="buttons-container")
-        button(type="submit" form="delete") Delete
-        button(type="submit" form="edit") Submit
-    form(method="POST" action=`/author/${post[0].author}/post/${post[0].id}/delete` id="delete")
+    if(post[0].subject)
+      form(method="POST", class="submit-container" action=`/conversation/${post[0].id}/update` id="edit")
+        textarea(name="content", cols="30", rows="10") #{post[0].content}
+        div(class="buttons-container")
+          button(type="submit" form="delete") Delete
+          button(type="submit" form="edit") Submit
+      form(method="POST" action=`/conversation/${post[0].id}/delete` id="delete")
+    else
+      form(method="POST", class="submit-container" action=`/author/${post[0].author}/post/${post[0].id}/edit` id="edit")
+        textarea(name="content", cols="30", rows="10") #{post[0].content}
+        div(class="buttons-container")
+          button(type="submit" form="delete") Delete
+          button(type="submit" form="edit") Submit
+      form(method="POST" action=`/author/${post[0].author}/post/${post[0].id}/delete` id="delete")
       
   
