@@ -57,7 +57,6 @@ const deletePost = async function (req, res, next) {
 };
 
 const editPost = async function (req, res, next) {
-  console.log(req.params, req.body);
   try {
     const post = await PostsModel.findPost(req.params.id);
     await PostsModel.updatePost(req.params.id, req.body);
