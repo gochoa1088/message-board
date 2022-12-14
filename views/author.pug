@@ -9,6 +9,32 @@ block content
         a(href=`/author/${author}` class="sort-link") Most Recent
         span() |
         a(href=`/author/${author}/?value=votes&sort=desc` class="sort-link") Most Votes
+    h3() Conversations started by #{author}
+    ul(class="posts-list")
+      each conversation in conversations 
+        li(class="post" id=conversation.id)
+          a(href=`/conversation/${conversation.id}/edit` class="edit-link") &#9998
+          div(class="vote-container")
+            form(method="post" action=`/conversation/${conversation.id}/upvote`)
+              button(type="submit") &#8593
+            if conversation.votes < 0 
+              p(class="negative-votes") #{conversation.votes}
+            else if conversation.votes === 0
+              p #{conversation.votes}
+            else 
+              p(class="positive-votes") #{conversation.votes}
+            form(method="post" action=`/conversation/${conversation.id}/downvote`)
+              button(type="submit") &#8595
+          div(class="post-message") 
+            a(href=`/conversation/${conversation.id}`)
+              h4=conversation.subject
+            p #{conversation.content}
+          div(class="post-info")
+            p 
+              |Posted by 
+              a() #{conversation.author} 
+              |at #{conversation.created_at}
+    h3() Responses from #{author}
     ul(class="posts-list")
       each post in posts 
         li(class="post" id=post.id)

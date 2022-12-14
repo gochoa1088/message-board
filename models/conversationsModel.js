@@ -42,9 +42,6 @@ const findConversationsByAuthor = async (author, query) => {
         .where("author", author)
         .orderBy("created_at", "desc");
     }
-    if (!conversations.length) {
-      throw new Error(`Sorry, there are no conversations by ${author}!`);
-    }
     return conversations;
   } catch (error) {
     if (error.code === "SQLITE_ERROR") {

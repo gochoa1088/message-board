@@ -22,17 +22,19 @@ const createNewConversation = async (req, res, next) => {
   }
 };
 
-const getAuthorConversations = async function (req, res, next) {
+const getAuthorConversationsAndPosts = async function (req, res, next) {
   try {
     const { author } = req.params;
     const conversations = await ConversationsModel.findConversationsByAuthor(
       author,
       req.query
     );
+    const posts = await PostsModel.findPostsByAuthor(author, req.query);
     const pageProperties = {
-      title: `Conversations by ${author}`,
+      title: `Posts by ${author}`,
       author,
       conversations,
+      posts,
     };
     res.status(200).render("author", pageProperties);
   } catch (err) {
@@ -111,7 +113,7 @@ const downvoteConversation = async (req, res, next) => {
 module.exports = {
   getAllConversations,
   createNewConversation,
-  getAuthorConversations,
+  getAuthorConversationsAndPosts,
   getSingleConversation,
   getConversationPage,
   deleteConversation,

@@ -46,7 +46,10 @@ router.get("/conversation/:id", ConversationsController.getConversationPage);
 router.post("/conversation/:id", PostsController.createNewPost);
 
 // GET user page
-router.get("/author/:author", PostsController.getAuthorPosts);
+router.get(
+  "/author/:author",
+  ConversationsController.getAuthorConversationsAndPosts
+);
 
 // GET individual post
 router.get("/author/:author/post/:id", PostsController.getSinglePost);

@@ -30,9 +30,6 @@ const findPostsByAuthor = async (author, query) => {
         .where("author", author)
         .orderBy("created_at", "desc");
     }
-    if (!posts.length) {
-      throw new Error(`Sorry, there are no posts by ${author}!`);
-    }
     return posts;
   } catch (error) {
     if (error.code === "SQLITE_ERROR") {
