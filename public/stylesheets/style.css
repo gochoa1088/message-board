@@ -44,6 +44,10 @@ a {
   padding: 50px;
 }
 
+.page-container h3 {
+  align-self: flex-start;
+}
+
 .page-heading {
   margin-top: 24px;
   margin-bottom: 36px;
@@ -138,6 +142,15 @@ a {
   min-height: 161px;
   width: 100%;
   max-width: 800px;
+}
+
+.original-post {
+  margin-bottom: 20px;
+  border: solid #0084ff 2px;
+}
+
+.post h4 {
+  margin-top: 0;
 }
 
 .edit-link {

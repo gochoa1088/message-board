@@ -15,7 +15,7 @@ const createNewPost = async (req, res, next) => {
   const { id } = req.params;
   try {
     await PostsModel.addPost(req.body, id);
-    res.status(200).redirect(`conversation/${id}`);
+    res.status(200).redirect(`/conversation/${id}`);
   } catch (err) {
     next(err);
   }

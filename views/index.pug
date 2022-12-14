@@ -5,10 +5,10 @@ block content
     h1(class="page-heading") Message Board
     form(method="post", class="submit-container")
       div(class="input-text-container") 
-        input(type="text" class ="author-input" placeholder="Enter name..." name="author")
-        input(type="text" class ="author-input" placeholder="Enter subject..." name="subject")
+        input(type="text" class ="author-input" placeholder="Your name..." name="author")
+        input(type="text" class ="author-input" placeholder="Enter topic..." name="subject")
         span Leave field blank to make an anonymous post
-      textarea(name="content", cols="30", rows="5", placeholder="Enter text here...", value="")
+      textarea(name="content", cols="30", rows="5", placeholder="Start a conversation...", value="")
       button(type="submit") Submit
     h3 #{title}
     span(class="sort-links") Sort By: 
