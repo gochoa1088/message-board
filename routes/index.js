@@ -9,7 +9,17 @@ router.get("/", ConversationsController.getAllConversations);
 // POST home page
 router.post("/", ConversationsController.createNewConversation);
 
-//
+//UPVOTE conversation
+router.post(
+  "/conversation/:id/upvote",
+  ConversationsController.upvoteConversation
+);
+
+//DOWNVOTE conversation
+router.post(
+  "/conversation/:id/downvote",
+  ConversationsController.downvoteConversation
+);
 
 // GET conversation page
 router.get("/conversation/:id", PostsController.getAllPosts);

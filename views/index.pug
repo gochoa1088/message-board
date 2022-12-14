@@ -20,7 +20,7 @@ block content
         li(class="post" id=conversation.id)
           a(href=`/author/${conversation.author}/post/${conversation.id}` class="edit-link") &#9998
           div(class="vote-container")
-            form(method="post" action=`/author/${conversation.author}/post/${conversation.id}/upvote`)
+            form(method="post" action=`/conversation/${conversation.id}/upvote`)
               button(type="submit") &#8593
             if conversation.votes < 0 
               p(class="negative-votes") #{conversation.votes}
@@ -28,7 +28,7 @@ block content
               p #{conversation.votes}
             else 
               p(class="positive-votes") #{conversation.votes}
-            form(method="post" action=`/author/${conversation.author}/post/${conversation.id}/downvote`)
+            form(method="post" action=`/conversation/${conversation.id}/downvote`)
               button(type="submit") &#8595
           div(class="post-message") 
             a(href=`/conversation/${conversation.id}`)
