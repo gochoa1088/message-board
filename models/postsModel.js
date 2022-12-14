@@ -72,6 +72,10 @@ const deletePost = async (id) => {
   await db("posts").where("id", id).delete();
 };
 
+const deleteConversationPosts = async (id) => {
+  await db("posts").where("conversation_id", id).delete();
+};
+
 // update a post
 const updatePost = async (id, body) => {
   await db("posts")
@@ -92,6 +96,7 @@ module.exports = {
   findAllPosts,
   findPost,
   deletePost,
+  deleteConversationPosts,
   updatePost,
   upvotePost,
   downvotePost,

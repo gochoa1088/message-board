@@ -71,6 +71,7 @@ const getConversationPage = async function (req, res, next) {
 
 const deleteConversation = async function (req, res, next) {
   try {
+    await PostsModel.deleteConversationPosts(req.params.id);
     await ConversationsModel.deleteConversation(req.params.id);
     res.status(200).redirect("/");
   } catch (err) {

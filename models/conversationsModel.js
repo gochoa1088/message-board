@@ -17,6 +17,9 @@ const addConversation = async (conversation) => {
   if (conversation.author === "") {
     delete conversation.author;
   }
+  if (conversation.subject === "") {
+    delete conversation.subject;
+  }
   if (conversation.content === "") {
     throw new Error("Cannot submit empty post!");
   }
@@ -62,8 +65,7 @@ const findConversation = async (id) => {
 
 // delete a conversation
 const deleteConversation = async (id) => {
-  await db("conversation").where("id", id).delete();
-  await db("posts").where("conversation_id", id).delete();
+  await db("conversations").where("id", id).delete();
 };
 
 const updateConversation = async (id, body) => {
