@@ -43,6 +43,19 @@ const getAuthorConversations = async function (req, res, next) {
 const getSingleConversation = async function (req, res, next) {
   const { id } = req.params;
   try {
+    const post = await ConversationsModel.findConversation(id);
+    const pageProperties = {
+      post,
+    };
+    res.status(200).render("edit", pageProperties);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getConversationPage = async function (req, res, next) {
+  const { id } = req.params;
+  try {
     const conversation = await ConversationsModel.findConversation(id);
     const posts = await PostsModel.findAllPosts(req.query, id);
     const pageProperties = {
@@ -68,7 +81,7 @@ const deleteConversation = async function (req, res, next) {
 const editConversation = async function (req, res, next) {
   try {
     await ConversationsModel.updateConversation(req.params.id, req.body);
-    res.status(200).redirect("/");
+    res.status(200).redirect(`/conversation/${req.params.id}`);
   } catch {
     next(err);
   }
@@ -99,6 +112,7 @@ module.exports = {
   createNewConversation,
   getAuthorConversations,
   getSingleConversation,
+  getConversationPage,
   deleteConversation,
   editConversation,
   upvoteConversation,

@@ -9,20 +9,32 @@ router.get("/", ConversationsController.getAllConversations);
 // POST home page
 router.post("/", ConversationsController.createNewConversation);
 
-//UPVOTE conversation
+// GET conversation
+router.get(
+  "/conversation/:id/edit",
+  ConversationsController.getSingleConversation
+);
+
+// UPDATE conversation
+router.post(
+  "/author/:author/post/:id/edit",
+  ConversationsController.editConversation
+);
+
+// UPVOTE conversation
 router.post(
   "/conversation/:id/upvote",
   ConversationsController.upvoteConversation
 );
 
-//DOWNVOTE conversation
+// DOWNVOTE conversation
 router.post(
   "/conversation/:id/downvote",
   ConversationsController.downvoteConversation
 );
 
 // GET conversation page
-router.get("/conversation/:id", ConversationsController.getSingleConversation);
+router.get("/conversation/:id", ConversationsController.getConversationPage);
 
 // POST conversation page
 router.post("/conversation/:id", PostsController.createNewPost);

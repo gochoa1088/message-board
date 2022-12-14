@@ -4,7 +4,7 @@ block content
   div(class="page-container")
     h1(class="page-heading") #{title}
     div(class="post original-post")
-      a(href=`/conversation/${conversation[0].id}/author/${conversation[0].author}` class="edit-link") &#9998
+      a(href=`/conversation/${conversation[0].id}/edit` class="edit-link") &#9998
       div(class="vote-container")
         form(method="post" action=`/conversation/${conversation[0].id}/upvote`)
           button(type="submit") &#8593
