@@ -1,4 +1,5 @@
 const ConversationsModel = require("../models/conversationsModel");
+const PostsModel = require("../models/postsModel");
 
 const getAllConversations = async function (req, res, next) {
   try {
@@ -40,12 +41,16 @@ const getAuthorConversations = async function (req, res, next) {
 };
 
 const getSingleConversation = async function (req, res, next) {
+  const { id } = req.params;
   try {
-    const conversation = await ConversationsModel.findConversation(
-      req.params.id
-    );
-    const pageProperties = { title: "Edit Conversation", conversation };
-    res.status(200).render("edit", pageProperties);
+    const conversation = await ConversationsModel.findConversation(id);
+    const posts = await PostsModel.findAllPosts(req.query, id);
+    const pageProperties = {
+      title: `${conversation[0].subject}`,
+      conversation,
+      posts,
+    };
+    res.status(200).render("conversation", pageProperties);
   } catch (err) {
     next(err);
   }

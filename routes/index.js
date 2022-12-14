@@ -22,7 +22,7 @@ router.post(
 );
 
 // GET conversation page
-router.get("/conversation/:id", PostsController.getAllPosts);
+router.get("/conversation/:id", ConversationsController.getSingleConversation);
 
 // POST conversation page
 router.post("/conversation/:id", PostsController.createNewPost);

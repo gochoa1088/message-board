@@ -1,7 +1,6 @@
 const db = require("../dbConfig");
 
 const findAllConversations = async (query) => {
-  console.log(query);
   try {
     if (Object.keys(query).length === 2) {
       return await db("conversations").orderBy(query.value, query.sort);
