@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  div(class="page-container")
+    h1(class="page-heading") #{title}
+    div(class="post original-post")
+      a(href=`/conversation/${conversation[0].id}/edit` class="edit-link") &#9998
+      div(class="vote-container")
+        form(method="post" action=`/conversation/${conversation[0].id}/upvote`)
+          button(type="submit") &#8593
+        if conversation[0].votes < 0 
+          p(class="negative-votes") #{conversation[0].votes}
+        else if conversation[0].votes === 0
+          p #{conversation[0].votes}
+        else 
+          p(class="positive-votes") #{conversation[0].votes}
+        form(method="post" action=`/conversation/${conversation[0].id}/downvote`)
+          button(type="submit") &#8595
+      div(class="post-message") 
+        h4 Original Post
+        p #{conversation[0].content}
+      div(class="post-info")
+        p 
+          |Posted by 
+          a(href=`/author/${conversation[0].author}` class="author-link") #{conversation[0].author} 
+          |at #{conversation[0].created_at}
+    form(method="post" class="submit-container")
+      div(class="input-text-container") 
+        input(type="text" class ="author-input" placeholder="Your name..." name="author")
+        span Leave field blank to make an anonymous post
+      textarea(name="content", cols="30", rows="7", placeholder="What are your thoughts?...", value="")
+      button(type="submit") Submit
+    h3 Responses
+    span(class="sort-links") Sort By: 
+        a(href=`/conversation/${conversation[0].id}` class="sort-link") Most Recent
+        span() |
+        a(href=`/conversation/${conversation[0].id}/?value=votes&sort=desc` class="sort-link") Most Votes
+    ul(class="posts-list")
+      each post in posts 
+        li(class="post" id=post.id)
+          a(href=`/author/${post.author}/post/${post.id}` class="edit-link") &#9998
+          div(class="vote-container")
+            form(method="post" action=`/author/${post.author}/post/${post.id}/upvote`)
+              button(type="submit") &#8593
+            if post.votes < 0 
+              p(class="negative-votes") #{post.votes}
+            else if post.votes === 0
+              p #{post.votes}
+            else 
+              p(class="positive-votes") #{post.votes}
+            form(method="post" action=`/author/${post.author}/post/${post.id}/downvote`)
+              button(type="submit") &#8595
+          div(class="post-message") 
+            p #{post.content}
+          div(class="post-info")
+            p 
+              |Posted by 
+              a(href=`/author/${post.author}` class="author-link") #{post.author} 
+              |at #{post.created_at}

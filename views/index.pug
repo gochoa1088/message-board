@@ -5,9 +5,10 @@ block content
     h1(class="page-heading") Message Board
     form(method="post", class="submit-container")
       div(class="input-text-container") 
-        input(type="text" class ="author-input" placeholder="Enter name..." name="author")
+        input(type="text" class ="author-input" placeholder="Your name..." name="author")
+        input(type="text" class ="author-input" placeholder="Enter topic..." name="subject")
         span Leave field blank to make an anonymous post
-      textarea(name="content", cols="30", rows="10", placeholder="Enter text here...", value="")
+      textarea(name="content", cols="30", rows="7", placeholder="Start a conversation...", value="")
       button(type="submit") Submit
     h3 #{title}
     span(class="sort-links") Sort By: 
@@ -15,24 +16,25 @@ block content
         span() |
         a(href="/?value=votes&sort=desc" class="sort-link") Most Votes
     ul(class="posts-list")
-      each post in posts 
-        li(class="post" id=post.id)
-          a(href=`/author/${post.author}/post/${post.id}` class="edit-link") &#9998
+      each conversation in conversations 
+        li(class="post" id=conversation.id)
           div(class="vote-container")
-            form(method="post" action=`/author/${post.author}/post/${post.id}/upvote`)
+            form(method="post" action=`/conversation/${conversation.id}/upvote`)
               button(type="submit") &#8593
-            if post.votes < 0 
-              p(class="negative-votes") #{post.votes}
-            else if post.votes === 0
-              p #{post.votes}
+            if conversation.votes < 0 
+              p(class="negative-votes") #{conversation.votes}
+            else if conversation.votes === 0
+              p #{conversation.votes}
             else 
-              p(class="positive-votes") #{post.votes}
-            form(method="post" action=`/author/${post.author}/post/${post.id}/downvote`)
+              p(class="positive-votes") #{conversation.votes}
+            form(method="post" action=`/conversation/${conversation.id}/downvote`)
               button(type="submit") &#8595
           div(class="post-message") 
-            p #{post.content}
+            a(href=`/conversation/${conversation.id}`)
+              h4=conversation.subject
+            p #{conversation.content}
           div(class="post-info")
             p 
               |Posted by 
-              a(href=`/author/${post.author}` class="author-link") #{post.author} 
-              |at #{post.created_at}
+              a(href=`/author/${conversation.author}` class="author-link") #{conversation.author} 
+              |at #{conversation.created_at}

@@ -1,19 +1,21 @@
 const PostsModel = require("../models/postsModel");
 
 const getAllPosts = async function (req, res, next) {
+  const { id } = req.params;
   try {
-    const posts = await PostsModel.findAllPosts(req.query);
+    const posts = await PostsModel.findAllPosts(req.query, id);
     const pageProperties = { title: "Posts", posts };
-    res.status(200).render("index", pageProperties);
+    res.status(200).render("conversation", pageProperties);
   } catch (err) {
     next(err);
   }
 };
 
 const createNewPost = async (req, res, next) => {
+  const { id } = req.params;
   try {
-    await PostsModel.addPost(req.body);
-    res.status(200).redirect("/");
+    await PostsModel.addPost(req.body, id);
+    res.status(200).redirect(`/conversation/${id}`);
   } catch (err) {
     next(err);
   }
@@ -46,8 +48,9 @@ const getSinglePost = async function (req, res, next) {
 
 const deletePost = async function (req, res, next) {
   try {
+    const post = await PostsModel.findPost(req.params.id);
     await PostsModel.deletePost(req.params.id);
-    res.status(200).redirect("/");
+    res.status(200).redirect(`/conversation/${post[0].conversation_id}`);
   } catch (err) {
     next(err);
   }
@@ -55,8 +58,9 @@ const deletePost = async function (req, res, next) {
 
 const editPost = async function (req, res, next) {
   try {
+    const post = await PostsModel.findPost(req.params.id);
     await PostsModel.updatePost(req.params.id, req.body);
-    res.status(200).redirect("/");
+    res.status(200).redirect(`/conversation/${post[0].conversation_id}`);
   } catch {
     next(err);
   }

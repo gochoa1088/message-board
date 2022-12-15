@@ -1,10 +1,11 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #edf0fa;
+  color: #787878;
 }
 
 a {
-  color: #00b7ff;
+  color: #4a66ad;
 }
 
 .menu {
@@ -15,7 +16,7 @@ a {
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: #0084ff;
+  background-color: #4a66ad;
   height: 48px;
   width: 100vw;
   border-bottom-left-radius: 5px;
@@ -44,6 +45,11 @@ a {
   padding: 50px;
 }
 
+.page-container h3 {
+  width: 100%;
+  max-width: 680px;
+}
+
 .page-heading {
   margin-top: 24px;
   margin-bottom: 36px;
@@ -55,7 +61,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 800px;
+  max-width: 680px;
 }
 
 .input-text-container {
@@ -71,9 +77,10 @@ a {
 .author-input {
   width: 20%;
   padding: 8px;
-  border: solid gray 1px;
+  border: none;
   border-radius: 4px;
   min-width: 100px;
+  border: solid #b9b9b9 0.1px;
 }
 
 .heading-container {
@@ -91,19 +98,29 @@ a {
   text-decoration: none;
 }
 
+.edit-author-link {
+  position: absolute;
+  left: 0;
+  font-size: small;
+  text-decoration: none;
+}
+
+.edit-author-link span {
+  font-size: large;
+}
+
 .submit-container textarea {
   resize: none;
   padding: 16px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: medium;
-  border: solid gray 1px;
+  border: solid #b9b9b9 0.1px;
   border-radius: 4px;
 }
 
 .submit-container button {
   align-self: flex-end;
   border-radius: 15px;
-  background-color: #0084ff;
+  background-color: #4a66ad;
   color: white;
   border: none;
   padding: 10px;
@@ -132,12 +149,20 @@ a {
 .post {
   position: relative;
   display: flex;
-  border: solid rgb(177, 177, 177) 1px;
+  border: none;
   background-color: #ffffff;
   border-radius: 5px;
-  min-height: 161px;
+  min-height: 120px;
   width: 100%;
-  max-width: 800px;
+  max-width: 680px;
+}
+
+.original-post {
+  margin-bottom: 20px;
+}
+
+.post h4 {
+  margin-top: 0;
 }
 
 .edit-link {
@@ -222,7 +247,7 @@ a {
 
 .sort-links {
   width: 100%;
-  max-width: 800px;
+  max-width: 680px;
 }
 
 .error-container {
@@ -270,10 +295,6 @@ a {
 
   .input-text-container span {
     font-size: xx-small;
-  }
-
-  .submit-container textarea {
-    font-size: small;
   }
 
   .submit-container button {
