@@ -47,6 +47,7 @@ const getSingleConversation = async function (req, res, next) {
   try {
     const post = await ConversationsModel.findConversation(id);
     const pageProperties = {
+      title: "Edit Post",
       post,
     };
     res.status(200).render("edit", pageProperties);

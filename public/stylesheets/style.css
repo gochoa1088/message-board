@@ -80,6 +80,7 @@ a {
   border: none;
   border-radius: 4px;
   min-width: 100px;
+  border: solid #b9b9b9 0.1px;
 }
 
 .heading-container {
@@ -112,7 +113,7 @@ a {
   resize: none;
   padding: 16px;
   font-family: Arial, Helvetica, sans-serif;
-  border: none;
+  border: solid #b9b9b9 0.1px;
   border-radius: 4px;
 }
 
