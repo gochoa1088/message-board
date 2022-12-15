@@ -97,6 +97,17 @@ a {
   text-decoration: none;
 }
 
+.edit-author-link {
+  position: absolute;
+  left: 0;
+  font-size: small;
+  text-decoration: none;
+}
+
+.edit-author-link span {
+  font-size: large;
+}
+
 .submit-container textarea {
   resize: none;
   padding: 16px;
