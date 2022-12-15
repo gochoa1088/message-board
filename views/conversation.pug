@@ -17,10 +17,11 @@ block content
         form(method="post" action=`/conversation/${conversation[0].id}/downvote`)
           button(type="submit") &#8595
       div(class="post-message") 
+        h4 Original Post
         p #{conversation[0].content}
       div(class="post-info")
         p 
-          |Orignal Post by 
+          |Posted by 
           a(href=`/author/${conversation[0].author}` class="author-link") #{conversation[0].author} 
           |at #{conversation[0].created_at}
     form(method="post" class="submit-container")
